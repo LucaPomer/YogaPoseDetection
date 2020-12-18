@@ -1,12 +1,13 @@
 # From Python
 # It requires OpenCV installed for Python
+import csv
 import sys
 import cv2
 import os
 from sys import platform
 import argparse
 import time
-from numpy import asarray
+from numpy import asarray, genfromtxt
 from numpy import savetxt
 
 try:
@@ -32,16 +33,16 @@ try:
 
     # Flags
     parser = argparse.ArgumentParser()
-    parser.add_argument("--image_dir", default="/Users/lucapomer/Documents/bachelor/TestOpenPose/images/",
+    parser.add_argument("--image_dir", default="/Users/lucapomer/Documents/bachelor/YogaPoseDetection/testImagesDog",
                         help="Process a directory of images. Read all standard formats (jpg, png, bmp, etc.).")
     parser.add_argument("--no_display", default=False, help="Enable to disable the visual display.")
     args = parser.parse_known_args()
 
     # Custom Params (refer to include/openpose/flags.hpp for more parameters)
     params = dict()
-    params["write_json"] = " results/"
+    #params["write_json"] = " testImagesDog/"
     params["num_gpu_start"] = 1
-    params["net_resolution"] = "256x256"
+    #params["net_resolution"] = "256x256"
     params["model_folder"] = "/Users/lucapomer/openpose_build_new/openpose/models"
 
     # Add others in path?
@@ -72,34 +73,51 @@ try:
     start = time.time()
 
     keypoints = []
+    proccesedImages = 0
+    #print(imagePaths)
     # Process and display images
     for imagePath in imagePaths:
+        print(imagePath)
         datum = op.Datum()
         imageToProcess = cv2.imread(imagePath)
+        #print(imageToProcess is None)
         datum.cvInputData = imageToProcess
         opWrapper.emplaceAndPop(op.VectorDatum([datum]))
+        print(datum.poseKeypoints[0] is None or imageToProcess is None or datum is None)
 
         # print("Body keypoints: \n" + str(datum.poseKeypoints))
         # print("NumOfHumansInPicture" + str(len(datum.poseKeypoints)))
         keypoints.append(datum.poseKeypoints[0])
+        proccesedImages = proccesedImages + 1
+        print(proccesedImages)
+
+
+
+        #cv2.imshow("OpenPose 1.7.0 - Tutorial Python API", datum.cvOutputData)
+        #cv2.waitKey(0)
 
         # if not args[0].no_display:
-        # cv2.imshow("OpenPose 1.7.0 - Tutorial Python API", datum.cvOutputData)
-        # key = cv2.waitKey(15)
-        # if key == 27: break
+        #     cv2.imshow("OpenPose 1.7.0 - Tutorial Python API", datum.cvOutputData)
+        #     key = cv2.waitKey(15)
+        #     if key == 27: break
 
-        # cv2.imshow("OpenPose 1.7.0 - Tutorial Python API", datum.cvOutputData)
-        # cv2.waitKey(0)
+
     reformatedKeys = []
     for keypoint in keypoints:
         personEntry = []
         for entry in keypoint:
-            print(entry)
+            #print(entry)
             personEntry.append(entry[0] + entry[1])
+        personEntry.append(2)
         reformatedKeys.append(personEntry)
-    data = asarray(reformatedKeys)
-    savetxt('data.csv', data, delimiter=',')
-    savetxt('dataFormatted.csv', reformatedKeys, delimiter=',')
+        with open('dataFormatted.csv', 'a') as fd:
+            writer = csv.writer(fd)
+            writer.writerow(personEntry)
+    #data = asarray(reformatedKeys)
+    #savetxt('data.csv', data, delimiter=',')
+    currentData = genfromtxt('dataFormatted.csv', delimiter=',')
+    #currentData.append(reformatedKeys)
+    #savetxt('dataFormatted.csv', currentData, delimiter=',')
 
     # print(str(keypoints))
     end = time.time()

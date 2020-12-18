@@ -6,11 +6,12 @@ import numpy as np
 
 iris = datasets.load_iris()  # flower dataset
 digits = datasets.load_digits()
-my_data = genfromtxt('data.csv', delimiter=',', usecols=(0, 1))
-classes = genfromtxt('data.csv', delimiter=',', usecols=(2,))
-trainingClass =[1, 1, 1, 3, 1, 1, 3, 1, 1, 1, 1, 1, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2]
+my_data = genfromtxt('dataFormatted.csv', delimiter=',', usecols=(0, 24))
+classes = genfromtxt('dataFormatted.csv', delimiter=',', usecols=(25, ))
+#my_data = genfromtxt('dataFormatted.csv', delimiter=',')
+trainingClass =[1, 1, 1, 1, 2, 2, 2, 2, 2]
 
-print(trainingClass)
+print(classes)
 
 #print(iris.data[:4])
 #classifier = svm.SVC(gamma=0.001, C=100.)
@@ -28,6 +29,6 @@ classifier = svm.SVC(gamma=0.001, C=100.)
 trainingData = my_data[:-1]  #all but the last one
 targetTrainingData = classes[:-1]#all but the last one
 
-classifier.fit(trainingData, trainingClass)
+classifier.fit(trainingData, targetTrainingData)
 classifier.predict(my_data[-1:])
 print(classifier.predict(my_data[-1:]))
