@@ -8,7 +8,9 @@ from sys import platform
 import argparse
 import time
 from numpy import asarray, genfromtxt
+import numpy as np
 from numpy import savetxt
+from helpFunctions import getKeypointAngles
 
 try:
     # Import Openpose (Windows/Ubuntu/OSX) -- give the path to the openpose build
@@ -33,16 +35,16 @@ try:
 
     # Flags
     parser = argparse.ArgumentParser()
-    parser.add_argument("--image_dir", default="/Users/lucapomer/Documents/bachelor/YogaPoseDetection/testImagesDog",
+    parser.add_argument("--image_dir", default="/Users/lucapomer/Documents/bachelor/YogaPoseDetection/angleCalcTest",
                         help="Process a directory of images. Read all standard formats (jpg, png, bmp, etc.).")
     parser.add_argument("--no_display", default=False, help="Enable to disable the visual display.")
     args = parser.parse_known_args()
 
     # Custom Params (refer to include/openpose/flags.hpp for more parameters)
     params = dict()
-    #params["write_json"] = " testImagesDog/"
+    # params["write_json"] = " angleCalcTest/"
     params["num_gpu_start"] = 1
-    #params["net_resolution"] = "256x256"
+    # params["net_resolution"] = "256x256"
     params["model_folder"] = "/Users/lucapomer/openpose_build_new/openpose/models"
 
     # Add others in path?
@@ -74,13 +76,13 @@ try:
 
     keypoints = []
     proccesedImages = 0
-    #print(imagePaths)
+    # print(imagePaths)
     # Process and display images
     for imagePath in imagePaths:
         print(imagePath)
         datum = op.Datum()
         imageToProcess = cv2.imread(imagePath)
-        #print(imageToProcess is None)
+        # print(imageToProcess is None)
         datum.cvInputData = imageToProcess
         opWrapper.emplaceAndPop(op.VectorDatum([datum]))
         print(datum.poseKeypoints[0] is None or imageToProcess is None or datum is None)
@@ -89,35 +91,36 @@ try:
         # print("NumOfHumansInPicture" + str(len(datum.poseKeypoints)))
         keypoints.append(datum.poseKeypoints[0])
         proccesedImages = proccesedImages + 1
-        print(proccesedImages)
+        # print(proccesedImages)
 
+        getKeypointAngles(datum.poseKeypoints[0])
 
-
-        #cv2.imshow("OpenPose 1.7.0 - Tutorial Python API", datum.cvOutputData)
-        #cv2.waitKey(0)
+        # cv2.imshow("OpenPose 1.7.0 - Tutorial Python API", datum.cvOutputData)
+        # cv2.waitKey(33)  # press a to continue
+        #cv2.imwrite('prossesedImg' + str(proccesedImages) + '.jpg', datum.cvOutputData)
 
         # if not args[0].no_display:
         #     cv2.imshow("OpenPose 1.7.0 - Tutorial Python API", datum.cvOutputData)
         #     key = cv2.waitKey(15)
         #     if key == 27: break
 
-
     reformatedKeys = []
-    for keypoint in keypoints:
-        personEntry = []
-        for entry in keypoint:
-            #print(entry)
-            personEntry.append(entry[0] + entry[1])
-        personEntry.append(2)
-        reformatedKeys.append(personEntry)
-        with open('dataFormatted.csv', 'a') as fd:
-            writer = csv.writer(fd)
-            writer.writerow(personEntry)
-    #data = asarray(reformatedKeys)
-    #savetxt('data.csv', data, delimiter=',')
+    # for keypoint in keypoints:
+    #     personEntry = []
+    #     for entry in keypoint:
+    #         #print(entry)
+    #         personEntry.append(entry[0] + entry[1])
+    #     personEntry.append(2)
+    #     reformatedKeys.append(personEntry)
+    #     with open('dataFormatted.csv', 'a') as fd:
+    #         writer = csv.writer(fd)
+    #         writer.writerow(personEntry)
+
+    # data = asarray(reformatedKeys)
+    # savetxt('data.csv', data, delimiter=',')
     currentData = genfromtxt('dataFormatted.csv', delimiter=',')
-    #currentData.append(reformatedKeys)
-    #savetxt('dataFormatted.csv', currentData, delimiter=',')
+    # currentData.append(reformatedKeys)
+    # savetxt('dataFormatted.csv', currentData, delimiter=',')
 
     # print(str(keypoints))
     end = time.time()
