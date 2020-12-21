@@ -7,9 +7,6 @@ import os
 from sys import platform
 import argparse
 import time
-from numpy import asarray, genfromtxt
-import numpy as np
-from numpy import savetxt
 from helpFunctions import getKeypointAngles
 
 try:
@@ -74,7 +71,6 @@ try:
     imagePaths = op.get_images_on_directory(args[0].image_dir);
     start = time.time()
 
-    keypoints = []
     proccesedImages = 0
     # print(imagePaths)
     # Process and display images
@@ -89,14 +85,11 @@ try:
 
         # print("Body keypoints: \n" + str(datum.poseKeypoints))
         # print("NumOfHumansInPicture" + str(len(datum.poseKeypoints)))
-        keypoints.append(datum.poseKeypoints[0])
         proccesedImages = proccesedImages + 1
         # print(proccesedImages)
 
         getKeypointAngles(datum.poseKeypoints[0])
 
-        # cv2.imshow("OpenPose 1.7.0 - Tutorial Python API", datum.cvOutputData)
-        # cv2.waitKey(33)  # press a to continue
         #cv2.imwrite('prossesedImg' + str(proccesedImages) + '.jpg', datum.cvOutputData)
 
         # if not args[0].no_display:
@@ -104,25 +97,6 @@ try:
         #     key = cv2.waitKey(15)
         #     if key == 27: break
 
-    reformatedKeys = []
-    # for keypoint in keypoints:
-    #     personEntry = []
-    #     for entry in keypoint:
-    #         #print(entry)
-    #         personEntry.append(entry[0] + entry[1])
-    #     personEntry.append(2)
-    #     reformatedKeys.append(personEntry)
-    #     with open('dataFormatted.csv', 'a') as fd:
-    #         writer = csv.writer(fd)
-    #         writer.writerow(personEntry)
-
-    # data = asarray(reformatedKeys)
-    # savetxt('data.csv', data, delimiter=',')
-    currentData = genfromtxt('dataFormatted.csv', delimiter=',')
-    # currentData.append(reformatedKeys)
-    # savetxt('dataFormatted.csv', currentData, delimiter=',')
-
-    # print(str(keypoints))
     end = time.time()
     print("OpenPose demo successfully finished. Total time: " + str(end - start) + " seconds")
 except Exception as e:

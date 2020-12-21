@@ -1,3 +1,5 @@
+import csv
+
 import numpy as np
 
 
@@ -50,3 +52,16 @@ def getAngle(pointA, pointB, pointC):
     cosine_angle = np.dot(ba, bc) / (np.linalg.norm(ba) * np.linalg.norm(bc))
     angle = np.arccos(cosine_angle)
     return np.degrees(angle)
+
+
+def writeData(entryArray):  #todo: test and perfect
+
+    with open('dataFormatted.csv', 'a') as fd:
+        writer = csv.writer(fd)
+        writer.writerow(entryArray)
+
+    # data = asarray(reformatedKeys)
+    # savetxt('data.csv', data, delimiter=',')
+    currentData = np.genfromtxt('dataFormatted.csv', delimiter=',')
+    # currentData.append(reformatedKeys)
+    # savetxt('dataFormatted.csv', currentData, delimiter=',')
