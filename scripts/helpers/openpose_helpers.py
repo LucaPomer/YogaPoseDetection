@@ -1,5 +1,7 @@
 import argparse
 
+import cv2
+
 
 def define_parser(images_directory):
     # Flags
@@ -33,3 +35,14 @@ def define_params(args):
             key = curr_item.replace('-', '')
             if key not in params: params[key] = next_item
     return params
+
+
+def get_keypoints_all_humans(op_instance, image_path, op_wrapper):
+    print(image_path)
+    datum = op_instance.Datum()
+    image_to_process = cv2.imread(image_path)
+    # print(imageToProcess is None)
+    datum.cvInputData = image_to_process
+    op_wrapper.emplaceAndPop(op_instance.VectorDatum([datum]))
+    # print("NumOfHumansInPicture" + str(len(datum.poseKeypoints)))
+    return datum.poseKeypoints
