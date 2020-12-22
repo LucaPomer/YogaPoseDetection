@@ -17,7 +17,7 @@ def define_params(args):
     params = dict()
     # params["write_json"] = " angleCalcTest/"
     params["num_gpu_start"] = 1
-    # params["net_resolution"] = "256x256"
+    params["net_resolution"] = "256x256"
     params["model_folder"] = "/Users/lucapomer/openpose_build_new/openpose/models"
 
     # Add others in path?  #todo: figure out what this is needed for
@@ -37,12 +37,13 @@ def define_params(args):
     return params
 
 
-def get_keypoints_all_humans(op_instance, image_path, op_wrapper):
+def get_keypoints_all_humans(op_instance, image_path, op_wrapper, datum):
     print(image_path)
-    datum = op_instance.Datum()
     image_to_process = cv2.imread(image_path)
     # print(imageToProcess is None)
     datum.cvInputData = image_to_process
     op_wrapper.emplaceAndPop(op_instance.VectorDatum([datum]))
-    # print("NumOfHumansInPicture" + str(len(datum.poseKeypoints)))
+    print("NumOfHumansInPicture" + str(len(datum.poseKeypoints)))
+    cv2.imshow('image', datum.cvOutputData)
+    cv2.waitKey(33)
     return datum.poseKeypoints

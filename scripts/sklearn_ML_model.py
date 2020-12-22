@@ -6,24 +6,14 @@ import numpy as np
 
 iris = datasets.load_iris()  # flower dataset
 digits = datasets.load_digits()
-my_data = genfromtxt('../dataFormatted.csv', delimiter=',', usecols=(0, 24))
-classes = genfromtxt('../dataFormatted.csv', delimiter=',', usecols=(25,))
+my_data = genfromtxt('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/data_with_angles.csv', delimiter=',', usecols=(0, 1, 2, 3, 4, 5, 6, 7, 8))
+classes = genfromtxt('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/data_with_angles.csv', delimiter=',', usecols=(9,))
 #my_data = genfromtxt('dataFormatted.csv', delimiter=',')
-trainingClass =[1, 1, 1, 1, 2, 2, 2, 2, 2]
 
 print(classes)
 
-#print(iris.data[:4])
-#classifier = svm.SVC(gamma=0.001, C=100.)
 
-#trainingData = iris.data[:-1]  #all but the last one
-#targetTrainingData = iris.target[:-1] #all but the last one
-
-#classifier.fit(trainingData,targetTrainingData)
-#classifier.predict(iris.data[-1:])
-#print(classifier.predict(iris.data[-1:]))
-
-print(my_data[:4])
+print(my_data[0])
 classifier = svm.SVC(gamma=0.001, C=100.)
 
 trainingData = my_data[:-1]  #all but the last one
