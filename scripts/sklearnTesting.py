@@ -6,8 +6,8 @@ import numpy as np
 
 iris = datasets.load_iris()  # flower dataset
 digits = datasets.load_digits()
-my_data = genfromtxt('dataFormatted.csv', delimiter=',', usecols=(0, 24))
-classes = genfromtxt('dataFormatted.csv', delimiter=',', usecols=(25, ))
+my_data = genfromtxt('../dataFormatted.csv', delimiter=',', usecols=(0, 24))
+classes = genfromtxt('../dataFormatted.csv', delimiter=',', usecols=(25,))
 #my_data = genfromtxt('dataFormatted.csv', delimiter=',')
 trainingClass =[1, 1, 1, 1, 2, 2, 2, 2, 2]
 
