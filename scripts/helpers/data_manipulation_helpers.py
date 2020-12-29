@@ -84,7 +84,7 @@ def get_angle(point_a, point_b, point_c):
 
 def write_data(entry_array):  # todo: test and perfect
 
-    with open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/data_with_angles.csv', 'a') as fd:
+    with open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/data_with_angles_new.csv', 'a') as fd:
         writer = csv.writer(fd)
         writer.writerow(entry_array)
 

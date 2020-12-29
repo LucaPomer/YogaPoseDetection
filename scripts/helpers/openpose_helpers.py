@@ -17,7 +17,9 @@ def define_params(args):
     params = dict()
     # params["write_json"] = " angleCalcTest/"
     params["num_gpu_start"] = 1
-    params["net_resolution"] = "256x256"
+    params["net_resolution"] = "656x-1"
+    params["scale_number"] = 4
+    params["scale_gap"] = 0.25
     params["model_folder"] = "/Users/lucapomer/openpose_build_new/openpose/models"
 
     # Add others in path?  #todo: figure out what this is needed for

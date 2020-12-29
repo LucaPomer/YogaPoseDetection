@@ -33,7 +33,7 @@ try:
             'script in the right folder?')
         raise e
 
-    parser = define_parser("/Users/lucapomer/Documents/bachelor/YogaPoseDetection/downwardDogSmall")
+    parser = define_parser("/Users/lucapomer/Documents/bachelor/YogaPoseDetection/bridgeSmallAmount")
     args = parser.parse_known_args()
     params = define_params(args)
 
@@ -47,19 +47,19 @@ try:
     start = time.time()
 
     processed_images = 0
-    class_number = 3
+    class_number = 2
     # Process and display images
     for image_path in image_paths:
         datum = op.Datum()
         keypoints_all_humans = get_keypoints_all_humans(op, image_path, opWrapper, datum)
-        #cv2.imwrite('prossesedImg' + str(processed_images) + '.jpg', datum.cvOutputData)
+        cv2.imwrite('bridgeResult/prossesedImg' + str(processed_images) + '.jpg', datum.cvOutputData)
         #for keypoints_human in keypoints_all_humans:
         first_human_found = keypoints_all_humans[0]
         # print(proccesedImages)
         keypoint_angles = get_keypoint_angles(first_human_found)
         keypoint_angles.append(class_number)
         print(keypoint_angles)
-        #  write_data(keypoint_angles)
+        write_data(keypoint_angles)
         processed_images = processed_images + 1
 
 
