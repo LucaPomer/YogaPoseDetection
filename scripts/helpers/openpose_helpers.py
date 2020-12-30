@@ -12,18 +12,19 @@ def define_parser(images_directory):
     return parser
 
 
-def define_params(args):
+def define_params(args, net_width, net_height):
     # Custom Params (refer to include/openpose/flags.hpp for more parameters)
     params = dict()
-    # params["write_json"] = " angleCalcTest/"
+    # params["write_json"] = " accuraccyTest/"
     params["num_gpu_start"] = 1
-    params["net_resolution"] = "656x-1"
+    # params["net_resolution"] = "656x-1"
+    params["net_resolution"] = str(net_width)+"x"+str(net_height)
     params["scale_number"] = 4
     params["scale_gap"] = 0.25
     params["model_folder"] = "/Users/lucapomer/openpose_build_new/openpose/models"
 
     # Add others in path?  #todo: figure out what this is needed for
-    # print("arguments " + str(args)) - args[1] seems empty
+    # print("arguments " + str(args))  # args[1] seems empty
     for i in range(0, len(args[1])):
         curr_item = args[1][i]
         if i != len(args[1]) - 1:

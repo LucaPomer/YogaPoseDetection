@@ -3,6 +3,11 @@ import csv
 import numpy as np
 
 
+def number_found_keypoints(keypoints):
+    # print(keypoints)
+    print("amount of non zero keypoints" + str(np.count_nonzero(keypoints, axis=0)))
+    return np.count_nonzero(keypoints, axis=0)[0]
+
 def get_keypoint_angles(keypoints):
     print(" getting angles ")
     result_angles = []
@@ -84,7 +89,7 @@ def get_angle(point_a, point_b, point_c):
 
 def write_data(entry_array):  # todo: test and perfect
 
-    with open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/data_with_angles_new.csv', 'a') as fd:
+    with open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/keypointsTestImg.csv', 'a') as fd:
         writer = csv.writer(fd)
         writer.writerow(entry_array)
 
