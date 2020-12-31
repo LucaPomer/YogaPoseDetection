@@ -1,8 +1,16 @@
+import cv2
+
+from scripts.helpers.openpose_accuraccy_testing import get_accuracy
 from scripts.openposeKeypoints import get_openpose_keypoints
 
-
-for i in range(15):
-    base_size = 512
-    print(str(i) + 'range '+ str(base_size+(i*16)))
-    get_openpose_keypoints((base_size+(i*16)),base_size,'/Users/lucapomer/Documents/bachelor/YogaPoseDetection/accuraccyTest', '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/sceletons')
+input_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/bridgeSmallAmount'
+accuracy = get_accuracy(input_folder, -1, 368)
+print(accuracy)
+# result = get_openpose_keypoints(-1, 368, input_folder)
+# processd_images =0
+# for result_obj in result:
+#     print(result_obj.img_path)
+#     cv2.imwrite('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/sceletons/processedImg' + str(processd_images) + '.jpg', result_obj.output_img)
+#     processd_images += 1
+#
 

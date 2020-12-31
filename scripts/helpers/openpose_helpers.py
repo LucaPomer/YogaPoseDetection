@@ -3,6 +3,7 @@ import argparse
 import cv2
 
 
+
 def define_parser(images_directory):
     # Flags
     parser = argparse.ArgumentParser()
@@ -18,7 +19,7 @@ def define_params(args, net_width, net_height):
     # params["write_json"] = " accuraccyTest/"
     params["num_gpu_start"] = 1
     # params["net_resolution"] = "656x-1"
-    params["net_resolution"] = str(net_width)+"x"+str(net_height)
+    params["net_resolution"] = str(net_width) + "x" + str(net_height)
     params["scale_number"] = 4
     params["scale_gap"] = 0.25
     params["model_folder"] = "/Users/lucapomer/openpose_build_new/openpose/models"
@@ -43,10 +44,12 @@ def define_params(args, net_width, net_height):
 def get_keypoints_all_humans(op_instance, image_path, op_wrapper, datum):
     print(image_path)
     image_to_process = cv2.imread(image_path)
-    # print(imageToProcess is None)
     datum.cvInputData = image_to_process
     op_wrapper.emplaceAndPop(op_instance.VectorDatum([datum]))
-    print("NumOfHumansInPicture" + str(len(datum.poseKeypoints)))
-    cv2.imshow('image', datum.cvOutputData)
-    cv2.waitKey(33)
-    return datum.poseKeypoints
+    if datum.poseKeypoints is not None:
+        # print("NumOfHumansInPicture " + str(len(datum.poseKeypoints)))
+        cv2.imshow('image', datum.cvOutputData)
+        cv2.waitKey(33)
+        return datum.poseKeypoints
+    else:
+        return None

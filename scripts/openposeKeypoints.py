@@ -1,17 +1,14 @@
 # From Python
 # It requires OpenCV installed for Python
 import sys
-import cv2
 import os
 from sys import platform
-import argparse
 import time
-from scripts.helpers.data_manipulation_helpers import get_keypoint_angles, number_found_keypoints
-from scripts.helpers.data_manipulation_helpers import write_data
 from scripts.helpers.openpose_helpers import define_parser, define_params, get_keypoints_all_humans
+from scripts.openpose_result import OpenposeResult
 
 
-def get_openpose_keypoints(net_width, net_height, img_dir, output_dir):
+def get_openpose_keypoints(net_width, net_height, img_dir):
     try:
         # Import Openpose (Windows/Ubuntu/OSX) -- give the path to the openpose build
         dir_path = os.path.dirname(os.path.realpath('/Users/lucapomer/openpose_build_new/openpose/build'))
@@ -48,30 +45,18 @@ def get_openpose_keypoints(net_width, net_height, img_dir, output_dir):
         image_paths = op.get_images_on_directory(args[0].image_dir)
         start = time.time()
 
-        processed_images = 0
-        class_number = 2
-        # Process and display images
+        return_list = []
         for image_path in image_paths:
             datum = op.Datum()
             keypoints_all_humans = get_keypoints_all_humans(op, image_path, opWrapper, datum)
-            first_human_found = keypoints_all_humans[0]
-            num_found_keyppoints = number_found_keypoints(first_human_found)
-            cv2.imwrite(output_dir+'/prossesedImg' + str(net_width) + 'points'+ str(num_found_keyppoints) + '.jpg', datum.cvOutputData)
-            #for keypoints_human in keypoints_all_humans:
-
-            # print(proccesedImages)
-
-            # keypoint_angles = get_keypoint_angles(first_human_found)
-            # keypoint_angles.append(class_number)
-            # print(keypoint_angles)
-            write_data(first_human_found)
-            processed_images = processed_images + 1
-
-
-            # cv2.imwrite('prossesedImg' + str(proccesedImages) + '.jpg', datum.cvOutputData)
+            if keypoints_all_humans is not None:
+                first_human_found = keypoints_all_humans[0]
+                result = OpenposeResult(first_human_found, image_path, datum.cvOutputData)
+                return_list.append(result)
 
         end = time.time()
         print("OpenPose demo successfully finished. Total time: " + str(end - start) + " seconds")
+        return return_list
     except Exception as e:
         print(e)
         sys.exit(-1)

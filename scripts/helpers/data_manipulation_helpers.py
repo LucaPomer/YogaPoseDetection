@@ -3,11 +3,6 @@ import csv
 import numpy as np
 
 
-def number_found_keypoints(keypoints):
-    # print(keypoints)
-    print("amount of non zero keypoints" + str(np.count_nonzero(keypoints, axis=0)))
-    return np.count_nonzero(keypoints, axis=0)[0]
-
 def get_keypoint_angles(keypoints):
     print(" getting angles ")
     result_angles = []
@@ -39,45 +34,46 @@ def get_keypoint_angles(keypoints):
     rHeel = all_points[24]
 
     neck_to_right_shoulder = get_angle(nose, neck, rShoulder)
-    #print("neck -> right shoulder = " + str(neck_to_right_shoulder))
+    # print("neck -> right shoulder = " + str(neck_to_right_shoulder))
     result_angles.append(neck_to_right_shoulder)
 
     neck_to_left_shoulder = get_angle(nose, neck, lShoulder)
-    #print("neck -> left shoulder = " + str(neck_to_left_shoulder))
+    # print("neck -> left shoulder = " + str(neck_to_left_shoulder))
     result_angles.append(neck_to_left_shoulder)
 
     neck_to_right_elbow = get_angle(neck, rShoulder, rElbow)
-    #print("neck -> right elbow = " + str(neck_to_right_elbow))
+    # print("neck -> right elbow = " + str(neck_to_right_elbow))
     result_angles.append(neck_to_right_elbow)
 
     neck_to_left_elbow = get_angle(neck, lShoulder, lElbow)
-    #print("neck -> left elbow = " + str(neck_to_left_elbow))
+    # print("neck -> left elbow = " + str(neck_to_left_elbow))
     result_angles.append(neck_to_left_elbow)
 
     r_shoulder_to_r_wrist = get_angle(rShoulder, rElbow, rWrist)
-    #print("right shoulder -> right wrist = " + str(r_shoulder_to_r_wrist))
+    # print("right shoulder -> right wrist = " + str(r_shoulder_to_r_wrist))
     result_angles.append(r_shoulder_to_r_wrist)
 
     l_shoulder_to_l_wrist = get_angle(lShoulder, lElbow, lWrist)
-    #print("left shoulder -> left wrist = " + str(l_shoulder_to_l_wrist))
+    # print("left shoulder -> left wrist = " + str(l_shoulder_to_l_wrist))
     result_angles.append(l_shoulder_to_l_wrist)
 
     nose_to_hip = get_angle(nose, neck, midHip)
-    #print("nose -> hip = " + str(nose_to_hip))
+    # print("nose -> hip = " + str(nose_to_hip))
     result_angles.append(nose_to_hip)
 
     neck_to_r_knee = get_angle(neck, midHip, rKnee)
-    #print("neck -> right knee = " + str(neck_to_r_knee))
+    # print("neck -> right knee = " + str(neck_to_r_knee))
     result_angles.append(neck_to_r_knee)
 
     neck_to_l_knee = get_angle(neck, midHip, lKnee)
-    #print("neck -> left knee = " + str(neck_to_l_knee))
+    # print("neck -> left knee = " + str(neck_to_l_knee))
     result_angles.append(neck_to_l_knee)
 
     return result_angles
 
+
 def get_angle(point_a, point_b, point_c):
-    #print(point_a, point_b, point_c)
+    # print(point_a, point_b, point_c)
     if point_a.all() == 0 or point_b.all() == 0 or point_c.all() == 0:
         return 0.0
     ba = point_a - point_b
@@ -87,14 +83,9 @@ def get_angle(point_a, point_b, point_c):
     return np.degrees(angle)
 
 
-def write_data(entry_array):  # todo: test and perfect
+def write_data(entry_array, file_name):
 
-    with open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/keypointsTestImg.csv', 'a') as fd:
+    with open(file_name, 'a') as fd:
         writer = csv.writer(fd)
         writer.writerow(entry_array)
 
-    # data = asarray(reformatedKeys)
-    # savetxt('data.csv', data, delimiter=',')
-    #currentData = np.genfromtxt('../../dataFormatted.csv', delimiter=',')
-    # currentData.append(reformatedKeys)
-    # savetxt('dataFormatted.csv', currentData, delimiter=',')
