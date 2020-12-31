@@ -4,7 +4,6 @@ import numpy as np
 
 
 def get_keypoint_angles(keypoints):
-    print(" getting angles ")
     result_angles = []
     all_points = keypoints
     nose = all_points[0]
@@ -34,40 +33,37 @@ def get_keypoint_angles(keypoints):
     rHeel = all_points[24]
 
     neck_to_right_shoulder = get_angle(nose, neck, rShoulder)
-    # print("neck -> right shoulder = " + str(neck_to_right_shoulder))
     result_angles.append(neck_to_right_shoulder)
 
     neck_to_left_shoulder = get_angle(nose, neck, lShoulder)
-    # print("neck -> left shoulder = " + str(neck_to_left_shoulder))
     result_angles.append(neck_to_left_shoulder)
 
     neck_to_right_elbow = get_angle(neck, rShoulder, rElbow)
-    # print("neck -> right elbow = " + str(neck_to_right_elbow))
     result_angles.append(neck_to_right_elbow)
 
     neck_to_left_elbow = get_angle(neck, lShoulder, lElbow)
-    # print("neck -> left elbow = " + str(neck_to_left_elbow))
     result_angles.append(neck_to_left_elbow)
 
     r_shoulder_to_r_wrist = get_angle(rShoulder, rElbow, rWrist)
-    # print("right shoulder -> right wrist = " + str(r_shoulder_to_r_wrist))
     result_angles.append(r_shoulder_to_r_wrist)
 
     l_shoulder_to_l_wrist = get_angle(lShoulder, lElbow, lWrist)
-    # print("left shoulder -> left wrist = " + str(l_shoulder_to_l_wrist))
     result_angles.append(l_shoulder_to_l_wrist)
 
     nose_to_hip = get_angle(nose, neck, midHip)
-    # print("nose -> hip = " + str(nose_to_hip))
     result_angles.append(nose_to_hip)
 
     neck_to_r_knee = get_angle(neck, midHip, rKnee)
-    # print("neck -> right knee = " + str(neck_to_r_knee))
     result_angles.append(neck_to_r_knee)
 
     neck_to_l_knee = get_angle(neck, midHip, lKnee)
-    # print("neck -> left knee = " + str(neck_to_l_knee))
     result_angles.append(neck_to_l_knee)
+
+    r_hip_to_r_foot = get_angle(rHip, rKnee, rAnkle)
+    result_angles.append(r_hip_to_r_foot)
+
+    l_hip_to_l_foot = get_angle(lHip, lKnee, lAnkle)
+    result_angles.append(l_hip_to_l_foot)
 
     return result_angles
 

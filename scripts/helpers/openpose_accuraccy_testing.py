@@ -1,8 +1,6 @@
-from scripts.openposeKeypoints import get_openpose_keypoints
 
 
-def get_accuracy(input_file_path, net_res_width, net_res_height):
-    result_from_openpose = get_openpose_keypoints(net_res_width, net_res_height, input_file_path)
+def get_accuracy(result_from_openpose):
     total_found_keypoints = 0
     for result_obj in result_from_openpose:
         num_non_zero_points = result_obj.number_found_keypoints()

@@ -9,5 +9,5 @@ class OpenposeResult:
 
     def number_found_keypoints(self):
         # print(keypoints)
-        print("amount of non zero keypoints" + str(np.count_nonzero(self.keypoints, axis=0)))
+        # print("amount of non zero keypoints" + str(np.count_nonzero(self.keypoints, axis=0)))
         return np.count_nonzero(self.keypoints, axis=0)[0]

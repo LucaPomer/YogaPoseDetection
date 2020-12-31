@@ -42,7 +42,6 @@ def define_params(args, net_width, net_height):
 
 
 def get_keypoints_all_humans(op_instance, image_path, op_wrapper, datum):
-    print(image_path)
     image_to_process = cv2.imread(image_path)
     datum.cvInputData = image_to_process
     op_wrapper.emplaceAndPop(op_instance.VectorDatum([datum]))
