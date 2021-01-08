@@ -1,7 +1,8 @@
+import sklearn
 from sklearn import datasets
 from sklearn import svm
 from numpy import genfromtxt
-import numpy as np
+from matplotlib import pyplot as plt
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.gaussian_process import GaussianProcessClassifier
@@ -25,7 +26,7 @@ classifiers = [
     SVC(kernel="linear", C=0.025),
     SVC(gamma=2, C=1),
     GaussianProcessClassifier(1.0 * RBF(1.0)),
-    DecisionTreeClassifier(max_depth=5),
+    DecisionTreeClassifier(max_depth=9),
     RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1),
     MLPClassifier(alpha=1, max_iter=1000),
     AdaBoostClassifier(),
@@ -42,5 +43,6 @@ for classifier in classifiers:
     print("prediciton " + str(classifier.predict(my_data[-1:])))
 
 
-
+print(sklearn.tree.plot_tree(classifiers[4]))
+plt.show()
 

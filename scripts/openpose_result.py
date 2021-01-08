@@ -10,4 +10,4 @@ class OpenposeResult:
     def number_found_keypoints(self):
         # print(keypoints)
         # print("amount of non zero keypoints" + str(np.count_nonzero(self.keypoints, axis=0)))
-        return np.count_nonzero(self.keypoints, axis=0)[0]
+        return np.count_nonzero(self.keypoints, axis=0)[0]  #the num of nonzero x coordinates. From experience if x is 0 y is likely 0 too

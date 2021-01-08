@@ -4,7 +4,7 @@ import sys
 import os
 from sys import platform
 import time
-from scripts.helpers.openpose_helpers import define_parser, define_params, get_keypoints_all_humans
+from scripts.helpers.openpose_helpers import define_parser, define_params, get_keypoints_first_human
 from scripts.openpose_result import OpenposeResult
 
 
@@ -48,10 +48,9 @@ def get_openpose_keypoints(net_width, net_height, img_dir):
         return_list = []
         for image_path in image_paths:
             datum = op.Datum()
-            keypoints_all_humans = get_keypoints_all_humans(op, image_path, opWrapper, datum)
-            if keypoints_all_humans is not None:
-                first_human_found = keypoints_all_humans[0]
-                result = OpenposeResult(first_human_found, image_path, datum.cvOutputData)
+            keypoints = get_keypoints_first_human(op, image_path, opWrapper, datum)
+            if keypoints is not None:
+                result = OpenposeResult(keypoints, image_path, datum.cvOutputData)
                 return_list.append(result)
 
         end = time.time()
