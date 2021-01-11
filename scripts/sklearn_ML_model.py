@@ -1,6 +1,4 @@
 import sklearn
-from sklearn import datasets
-from sklearn import svm
 from numpy import genfromtxt
 from matplotlib import pyplot as plt
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
@@ -13,8 +11,6 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
-iris = datasets.load_iris()  # flower dataset
-digits = datasets.load_digits()
 my_data = genfromtxt('angles.csv', delimiter=',', usecols=(0, 1, 2, 3, 4, 5, 6, 7, 8,9,10))
 classes = genfromtxt('angles.csv', delimiter=',', usecols=(11,))
 #my_data = genfromtxt('dataFormatted.csv', delimiter=',')
