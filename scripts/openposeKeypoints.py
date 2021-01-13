@@ -4,6 +4,8 @@ import sys
 import os
 from sys import platform
 import time
+
+from scripts.helpers.data_manipulation_helpers import write_data
 from scripts.helpers.openpose_helpers import define_parser, define_params, get_keypoints_first_human
 from scripts.openpose_result import OpenposeResult
 
@@ -52,6 +54,8 @@ def get_openpose_keypoints(net_width, net_height, img_dir):
             if keypoints is not None:
                 result = OpenposeResult(keypoints, image_path, datum.cvOutputData)
                 return_list.append(result)
+            else:
+                write_data([image_path], 'failed_images.csv')
 
         end = time.time()
         print("OpenPose demo successfully finished. Total time: " + str(end - start) + " seconds")

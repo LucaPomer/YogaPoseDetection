@@ -1,3 +1,5 @@
+import re
+
 import cv2
 import os
 import shutil
@@ -9,6 +11,15 @@ import shutil
 # '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/croppedAndResized/' + str(filename) + '.jpg', cv2.resize(
 # img, (256, 256), interpolation=cv2.INTER_AREA))
 #
+from scripts.helpers.dictionaries import pose_to_class_num
+
+
+def get_file_class_num(folder_path):
+    for key in pose_to_class_num.keys():
+        if re.search(key, folder_path, re.IGNORECASE):
+            return pose_to_class_num[key]
+    return -1
+
 
 def split_file(file_path, img_per_folder):
     batch_num = 1
@@ -16,7 +27,6 @@ def split_file(file_path, img_per_folder):
     os.makedirs(dst_path)
     num_images_in_batch = 0
     for img_path in os.listdir(file_path):
-        print(img_path)
         full_img_path = file_path + '/' + img_path
         if num_images_in_batch >= img_per_folder:
             batch_num += 1
@@ -27,15 +37,4 @@ def split_file(file_path, img_per_folder):
         num_images_in_batch += 1
 
 
-# scale_percent = 60  # percent of original size
-# width = int(img.shape[1] * scale_percent / 100)
-# height = int(img.shape[0] * scale_percent / 100)
-# dim = (width, height)
-# # resize image
-# resized = cv2.resize(img, (256, 256), interpolation=cv2.INTER_AREA)
-#
-# print('Resized Dimensions : ', resized.shape)
-#
-# cv2.imshow("Resized image", resized)
-# cv2.waitKey(0)
-cv2.destroyAllWindows()
+
