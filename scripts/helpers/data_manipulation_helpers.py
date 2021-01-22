@@ -1,6 +1,7 @@
 import csv
-
+import pandas as pd
 import numpy as np
+from sklearn.model_selection import train_test_split
 
 
 def get_keypoint_angles(keypoints):
@@ -80,8 +81,21 @@ def get_angle(point_a, point_b, point_c):
 
 
 def write_data(entry_array, file_name):
-
     with open(file_name, 'a') as fd:
         writer = csv.writer(fd)
         writer.writerow(entry_array)
 
+
+def split_data(data, classes):
+    X_train, X_test, y_train, y_test = train_test_split(data, classes, test_size=0.33, random_state=42)
+
+    print(y_train)
+    # df = pd.read_csv(file_path)
+    # df['split'] = np.random.randn(df.shape[0], 1)
+    #
+    # msk = np.random.rand(len(df)) <= 0.7
+    #
+    # train = df[msk]
+    # test = df[~msk]
+    #
+    # print(test)

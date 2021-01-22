@@ -20,9 +20,9 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-my_data = genfromtxt('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/angles.csv', delimiter=',',
+my_data = genfromtxt('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/anglesNew.csv', delimiter=',',
                      usecols=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
-classes = genfromtxt('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/angles.csv', delimiter=',', usecols=(11,))
+classes = genfromtxt('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/anglesNew.csv', delimiter=',', usecols=(11,))
 
 #  OPTION 1: show some of the data for example some specific angles
 # plt.scatter(my_data[classes == 1][0], my_data[classes == 1][1], label='class 1', c='red')
@@ -46,9 +46,9 @@ lda = make_pipeline(StandardScaler(),
                     LinearDiscriminantAnalysis(n_components=2))
 transformed = pd.DataFrame(lda.fit_transform(my_data, classes))
 
-plt.scatter(transformed[classes == 1][0], transformed[classes == 1][1], label='bridge?', c='red')
-plt.scatter(transformed[classes == 3][0], transformed[classes == 3][1], label='treePose', c='blue')
-plt.scatter(transformed[classes == 2][0], transformed[classes == 2][1], label='downwardDog?', c='green')
+plt.scatter(transformed[classes == 1][0], transformed[classes == 1][1], label='tree', c='red')
+plt.scatter(transformed[classes == 3][0], transformed[classes == 3][1], label='bridge', c='blue')
+plt.scatter(transformed[classes == 2][0], transformed[classes == 2][1], label='downwardDog', c='green')
 
-plt.legend(loc=3)
+plt.legend(loc=2)
 plt.show()

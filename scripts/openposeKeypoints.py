@@ -48,6 +48,7 @@ def get_openpose_keypoints(net_width, net_height, img_dir):
         start = time.time()
 
         return_list = []
+        print(args[0].image_dir)
         for image_path in image_paths:
             datum = op.Datum()
             keypoints = get_keypoints_first_human(op, image_path, opWrapper, datum)
@@ -58,7 +59,8 @@ def get_openpose_keypoints(net_width, net_height, img_dir):
                 write_data([image_path], 'failed_images.csv')
 
         end = time.time()
-        print("OpenPose demo successfully finished. Total time: " + str(end - start) + " seconds")
+        print("OpenPose COMPLETE Total time: " + str(end - start) + " seconds " + str(args[0].image_dir)
+              )
         return return_list
     except Exception as e:
         print(e)
