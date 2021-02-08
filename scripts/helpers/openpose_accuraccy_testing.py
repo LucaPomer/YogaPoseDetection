@@ -1,7 +1,7 @@
 import os
 
 from scripts.helpers.data_manipulation_helpers import write_data
-from scripts.openposeKeypoints import get_openpose_keypoints
+from scripts.openpose_algorithm import run_openpose_algorithm
 
 
 def get_Num_files(folder_path):
@@ -20,7 +20,7 @@ def optimal_net_res(file_path, num_tries, min_height, step_size):
     for i in range(num_tries):
         for j in range(num_tries):
             print(net_res_height)
-            result_from_openpose = get_openpose_keypoints(net_res_width, net_res_height, file_path)
+            result_from_openpose = run_openpose_algorithm(net_res_width, net_res_height, file_path)
             accuracy = get_accuracy(result_from_openpose, num_files, True)
             accuracy_found_skeletons = get_accuracy(result_from_openpose, num_files, False)
             print(accuracy)

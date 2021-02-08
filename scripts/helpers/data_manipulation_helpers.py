@@ -3,67 +3,45 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 
+from scripts.op_skeleton import OpSkeleton
+
 
 def get_keypoint_angles(keypoints):
     result_angles = []
     all_points = keypoints
-    nose = all_points[0]
-    neck = all_points[1]
-    rShoulder = all_points[2]
-    rElbow = all_points[3]
-    rWrist = all_points[4]
-    lShoulder = all_points[5]
-    lElbow = all_points[6]
-    lWrist = all_points[7]
-    midHip = all_points[8]
-    rHip = all_points[9]
-    rKnee = all_points[10]
-    rAnkle = all_points[11]
-    lHip = all_points[12]
-    lKnee = all_points[13]
-    lAnkle = all_points[14]
-    rEye = all_points[15]
-    lEye = all_points[16]
-    rEar = all_points[17]
-    lEar = all_points[18]
-    lBigToe = all_points[19]
-    lSmallToe = all_points[20]
-    lHeel = all_points[21]
-    rBigToe = all_points[22]
-    rSmallToe = all_points[23]
-    rHeel = all_points[24]
+    skelton = OpSkeleton(all_points)
 
-    neck_to_right_shoulder = get_angle(nose, neck, rShoulder)
+    neck_to_right_shoulder = get_angle(skelton.nose, skelton.neck, skelton.rShoulder)
     result_angles.append(neck_to_right_shoulder)
 
-    neck_to_left_shoulder = get_angle(nose, neck, lShoulder)
+    neck_to_left_shoulder = get_angle(skelton.nose, skelton.neck, skelton.lShoulder)
     result_angles.append(neck_to_left_shoulder)
 
-    neck_to_right_elbow = get_angle(neck, rShoulder, rElbow)
+    neck_to_right_elbow = get_angle(skelton.neck, skelton.rShoulder, skelton.rElbow)
     result_angles.append(neck_to_right_elbow)
 
-    neck_to_left_elbow = get_angle(neck, lShoulder, lElbow)
+    neck_to_left_elbow = get_angle(skelton.neck, skelton.lShoulder, skelton.lElbow)
     result_angles.append(neck_to_left_elbow)
 
-    r_shoulder_to_r_wrist = get_angle(rShoulder, rElbow, rWrist)
+    r_shoulder_to_r_wrist = get_angle(skelton.rShoulder, skelton.rElbow, skelton.rWrist)
     result_angles.append(r_shoulder_to_r_wrist)
 
-    l_shoulder_to_l_wrist = get_angle(lShoulder, lElbow, lWrist)
+    l_shoulder_to_l_wrist = get_angle(skelton.lShoulder, skelton.lElbow, skelton.lWrist)
     result_angles.append(l_shoulder_to_l_wrist)
 
-    nose_to_hip = get_angle(nose, neck, midHip)
+    nose_to_hip = get_angle(skelton.nose, skelton.neck, skelton.midHip)
     result_angles.append(nose_to_hip)
 
-    neck_to_r_knee = get_angle(neck, midHip, rKnee)
+    neck_to_r_knee = get_angle(skelton.neck, skelton.midHip, skelton.rKnee)
     result_angles.append(neck_to_r_knee)
 
-    neck_to_l_knee = get_angle(neck, midHip, lKnee)
+    neck_to_l_knee = get_angle(skelton.neck, skelton.midHip, skelton.lKnee)
     result_angles.append(neck_to_l_knee)
 
-    r_hip_to_r_foot = get_angle(rHip, rKnee, rAnkle)
+    r_hip_to_r_foot = get_angle(skelton.rHip, skelton.rKnee, skelton.rAnkle)
     result_angles.append(r_hip_to_r_foot)
 
-    l_hip_to_l_foot = get_angle(lHip, lKnee, lAnkle)
+    l_hip_to_l_foot = get_angle(skelton.lHip, skelton.lKnee, skelton.lAnkle)
     result_angles.append(l_hip_to_l_foot)
 
     return result_angles
@@ -90,12 +68,4 @@ def split_data(data, classes):
     X_train, X_test, y_train, y_test = train_test_split(data, classes, test_size=0.33, random_state=42)
 
     print(y_train)
-    # df = pd.read_csv(file_path)
-    # df['split'] = np.random.randn(df.shape[0], 1)
-    #
-    # msk = np.random.rand(len(df)) <= 0.7
-    #
-    # train = df[msk]
-    # test = df[~msk]
-    #
-    # print(test)
+

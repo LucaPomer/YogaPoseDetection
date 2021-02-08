@@ -10,7 +10,7 @@ from scripts.helpers.openpose_helpers import define_parser, define_params, get_k
 from scripts.openpose_result import OpenposeResult
 
 
-def get_openpose_keypoints(net_width, net_height, img_dir):
+def run_openpose_algorithm(net_width, net_height, img_dir):
     try:
         # Import Openpose (Windows/Ubuntu/OSX) -- give the path to the openpose build
         dir_path = os.path.dirname(os.path.realpath('/Users/lucapomer/openpose_build_new/openpose/build'))
