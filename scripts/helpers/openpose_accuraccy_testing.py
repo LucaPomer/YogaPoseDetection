@@ -4,7 +4,7 @@ from scripts.helpers.data_manipulation_helpers import write_data
 from scripts.openpose_algorithm import run_openpose_algorithm
 
 
-def get_Num_files(folder_path):
+def get_num_files(folder_path):
     listOfFiles = os.listdir(folder_path)  # dir is your directory path
     number_files = len(listOfFiles)
     return number_files
@@ -16,7 +16,7 @@ def optimal_net_res(file_path, num_tries, min_height, step_size):
     best_accuracy = 0
     optimal_res_height = net_res_height
     optimal_res_width = net_res_width
-    num_files = get_Num_files(file_path)
+    num_files = get_num_files(file_path)
     for i in range(num_tries):
         for j in range(num_tries):
             print(net_res_height)
