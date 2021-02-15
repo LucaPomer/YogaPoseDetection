@@ -4,8 +4,8 @@ from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.gaussian_process.kernels import RBF, DotProduct, Matern, RationalQuadratic, WhiteKernel
 from sklearn.model_selection import RepeatedStratifiedKFold, GridSearchCV, train_test_split
 
-my_data = genfromtxt('distances.csv', delimiter=',', usecols=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
-classes = genfromtxt('distances.csv', delimiter=',', usecols=(10,))
+my_data = genfromtxt('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/angles.csv', delimiter=',', usecols=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+classes = genfromtxt('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/angles.csv', delimiter=',', usecols=(11,))
 # my_data = genfromtxt('dataFormatted.csv', delimiter=',')
 
 X_train, X_test, y_train, y_test = train_test_split(my_data, classes, test_size=0.33, random_state=42)

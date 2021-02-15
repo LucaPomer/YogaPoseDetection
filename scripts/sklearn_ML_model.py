@@ -14,17 +14,12 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
+from scripts.ml_data_for_classification import MlDataForClassification
 
-from scripts.helpers.data_manipulation_helpers import split_data
-all_data = pandas.read_csv('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/distance_and_angles.csv')
-#print(all_data)
-my_data = all_data.values[:, 0:21]
-classes = all_data.values[:, 21]
-#my_data = genfromtxt('distances.csv', delimiter=',', usecols=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
-#classes = genfromtxt('distances.csv', delimiter=',', usecols=(10,))
-# my_data = genfromtxt('dataFormatted.csv', delimiter=',')
+all_data = MlDataForClassification('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/angles.csv')
 
-X_train, X_test, y_train, y_test = train_test_split(my_data, classes, test_size=0.33, random_state=42)
+
+X_train, X_test, y_train, y_test = train_test_split(all_data.data, all_data.class_labels, test_size=0.33, random_state=42)
 
 print(y_train)
 # classifier = svm.SVC(gamma=0.001, C=100.)
@@ -40,8 +35,6 @@ classifiers = [
     GaussianNB(),
     QuadraticDiscriminantAnalysis()]
 
-trainingData = my_data[:-1]  # all but the last one
-targetTrainingData = classes[:-1]  # all but the last one
 
 # clf = svm.SVC(kernel='linear', C=1).fit(X_train, y_train)
 # clf.score(X_test, y_test)
