@@ -1,27 +1,23 @@
 import pandas
-import sklearn
-from numpy import genfromtxt
-from matplotlib import pyplot as plt
-from sklearn import svm
-from sklearn.datasets import make_classification
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.gaussian_process import GaussianProcessClassifier
-from sklearn.gaussian_process.kernels import RBF, DotProduct, Matern, RationalQuadratic, WhiteKernel
-from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold, GridSearchCV
+from sklearn.gaussian_process.kernels import Matern
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
+
+from scripts.helpers.angle_calculation import get_keypoint_angles
+from scripts.helpers.data_creation_helpers import run_openpose_and_angle_calc
+from scripts.helpers.sklearn_helpers import compare_classifiers, train_and_save_model, load_model_and_predict
 from scripts.ml_data_for_classification import MlDataForClassification
+from scripts.openpose_algorithm import run_openpose_algorithm
 
-all_data = MlDataForClassification('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/angles.csv')
+all_data = MlDataForClassification('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/angles.csv', 0.33, 42)
 
-
-X_train, X_test, y_train, y_test = train_test_split(all_data.data, all_data.class_labels, test_size=0.33, random_state=42)
-
-print(y_train)
+# print(all_data.labels_train)
 # classifier = svm.SVC(gamma=0.001, C=100.)
 classifiers = [
     KNeighborsClassifier(3),
@@ -35,22 +31,20 @@ classifiers = [
     GaussianNB(),
     QuadraticDiscriminantAnalysis()]
 
-
 # clf = svm.SVC(kernel='linear', C=1).fit(X_train, y_train)
 # clf.score(X_test, y_test)
 # print(clf.score(X_test, y_test))
 
-for classifier in classifiers:
-    classifier.fit(X_train, y_train)
-    classifier.predict(X_test)
-    print(classifier)
-    # print("real value " + str(y_test))
-    # print("prediciton " + str(classifier.predict(X_test)))
-    print(classifier.score(X_test, y_test))
+train_and_save_model(classifiers[1], all_data, 'SVC_linear_angles.sav')
+# compare_classifiers(classifiers, all_data)
 
+net_res_width = 512
+net_res_height = 256
 
-
-
+# run_openpose_and_angle_calc('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/unlabled_images', '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/angles_only.csv', net_res_width, net_res_height)
+csv_data = pandas.read_csv('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/angles_only.csv', header=None)
+data_as_2d_array = csv_data.values
+classResult = load_model_and_predict('SVC_linear_angles.sav', data_as_2d_array)
 #
 #
 # print(sklearn.tree.plot_tree(classifiers[4]))

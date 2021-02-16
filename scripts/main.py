@@ -27,7 +27,10 @@ for class_folder in os.listdir(images_folder):
         print("no split needed")
 
     class_number = get_file_class_num(full_class_path)
-    run_openpose_and_angle_calc(full_class_path, result_file_path,
-                                   net_res_width, net_res_height, class_number)
+
+    for batch_folder in os.listdir(full_class_path):
+        full_folder_path = full_class_path + '/' + batch_folder
+        run_openpose_and_angle_calc(full_class_path, result_file_path,
+                                    net_res_width, net_res_height, class_number)
 
 # optimal_net_res(input_file_path, 8, 128, 64)
