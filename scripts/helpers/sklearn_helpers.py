@@ -2,6 +2,8 @@ import pickle
 
 from sklearn.model_selection import train_test_split
 
+from scripts.openpose_algorithm import run_openpose_algorithm
+
 
 def train_and_save_model(model, all_data, save_file_name):
     model.fit(all_data.data_train, all_data.labels_train)
@@ -17,10 +19,13 @@ def compare_classifiers(model_array, all_data):
         print(classifier.score(all_data.data_test, all_data.labels_test))
 
 
-def load_model_and_predict(model_file, image_data):
+def load_model_and_predict(model_file, images_data):
     # load the model from disk
     loaded_model = pickle.load(open(model_file, 'rb'))
-    print(image_data)
-    result = loaded_model.predict(image_data)
+    print(images_data)
+    result = loaded_model.predict(images_data)
     print(result)
     return result
+
+
+

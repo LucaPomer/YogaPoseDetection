@@ -10,12 +10,12 @@ from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
 from scripts.helpers.angle_calculation import get_keypoint_angles
-from scripts.helpers.data_creation_helpers import run_openpose_and_angle_calc
+from scripts.helpers.data_creation_helpers import angle_calc_and_write_data, get_angles
 from scripts.helpers.sklearn_helpers import compare_classifiers, train_and_save_model, load_model_and_predict
-from scripts.ml_data_for_classification import MlDataForClassification
+from scripts.ml_data_for_classification import MlDataForModelTraining
 from scripts.openpose_algorithm import run_openpose_algorithm
 
-all_data = MlDataForClassification('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/angles.csv', 0.33, 42)
+all_data = MlDataForModelTraining('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/angles.csv', 0.33, 42)
 
 # print(all_data.labels_train)
 # classifier = svm.SVC(gamma=0.001, C=100.)
@@ -35,16 +35,17 @@ classifiers = [
 # clf.score(X_test, y_test)
 # print(clf.score(X_test, y_test))
 
-train_and_save_model(classifiers[1], all_data, 'SVC_linear_angles.sav')
+train_and_save_model(classifiers[1], all_data, 'SVC_sigmoid_angles.sav')
 # compare_classifiers(classifiers, all_data)
 
 net_res_width = 512
 net_res_height = 256
+images_to_classify = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/unlabled_images'
 
-# run_openpose_and_angle_calc('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/unlabled_images', '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/angles_only.csv', net_res_width, net_res_height)
-csv_data = pandas.read_csv('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/angles_only.csv', header=None)
-data_as_2d_array = csv_data.values
-classResult = load_model_and_predict('SVC_linear_angles.sav', data_as_2d_array)
+result_from_openpose = run_openpose_algorithm(net_res_width, net_res_height, images_to_classify)
+angles = get_angles(result_from_openpose)
+classResult = load_model_and_predict('SVC_sigmoid_angles.sav', angles)
+print(classifiers[1].score(all_data.data_test, all_data.labels_test))
 #
 #
 # print(sklearn.tree.plot_tree(classifiers[4]))

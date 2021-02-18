@@ -1,7 +1,8 @@
 import os
 
-from scripts.helpers.data_creation_helpers import run_openpose_and_distance_calc, \
-    run_openpose_with_distance_and_degree_calc, run_openpose_and_angle_calc
+from scripts.helpers.data_creation_helpers import distance_calc_and_write_data, \
+    distance_and_degree_calc_and_write_data, angle_calc_and_write_data
+from scripts.openpose_algorithm import run_openpose_algorithm
 from scripts.preprocess_image_folders import split_file, get_file_class_num, resize_images_to_scale, sort_images_by_size
 
 images_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/images'
@@ -30,7 +31,7 @@ for class_folder in os.listdir(images_folder):
 
     for batch_folder in os.listdir(full_class_path):
         full_folder_path = full_class_path + '/' + batch_folder
-        run_openpose_and_angle_calc(full_class_path, result_file_path,
-                                    net_res_width, net_res_height, class_number)
+        result_from_openpose = run_openpose_algorithm(net_res_width, net_res_height, full_folder_path)
+        angle_calc_and_write_data(result_from_openpose, result_file_path, class_number)
 
 # optimal_net_res(input_file_path, 8, 128, 64)

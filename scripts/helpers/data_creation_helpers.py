@@ -1,35 +1,49 @@
-import os
-
 from scripts.helpers.angle_calculation import get_keypoint_angles
-from scripts.helpers.data_manipulation_helpers import write_data
+from scripts.helpers.data_manipulation_helpers import write_multiple_lines
 from scripts.helpers.relative_distance_calculation import get_relative_distances
-from scripts.openpose_algorithm import run_openpose_algorithm
 
 
-def run_openpose_and_angle_calc(input_file_path, result_file_path, net_res_width, net_res_height, class_number=None):
-    result_from_openpose = run_openpose_algorithm(net_res_width, net_res_height, input_file_path)
+def angle_calc_and_write_data(result_from_openpose, result_file_path, class_number=None):
+    lines = get_angles(result_from_openpose, class_number)
+    write_multiple_lines(lines, result_file_path)
+
+
+def distance_calc_and_write_data(result_from_openpose, result_file_path, class_number=None):
+    lines = get_distances(result_from_openpose, class_number)
+    write_multiple_lines(lines, result_file_path)
+
+
+def distance_and_degree_calc_and_write_data(result_from_openpose, result_file_path, class_number=None):
+    lines = get_distances_and_angles(result_from_openpose, class_number)
+    write_multiple_lines(lines, result_file_path)
+
+
+def get_angles(result_from_openpose, class_num=None):
+    lines = []
     for item in result_from_openpose:
         angles = get_keypoint_angles(item.keypoints)
-        if class_number is not None:
-            angles.append(class_number)
-        write_data(angles, result_file_path)
+        if class_num is not None:
+            angles.append(class_num)
+        lines.append(angles)
+    return lines
 
 
-def run_openpose_and_distance_calc(input_file_path, result_file_path, net_res_width, net_res_height, class_number):
-    result_from_openpose = run_openpose_algorithm(net_res_width, net_res_height, input_file_path)
+def get_distances(result_from_openpose, class_num=None):
+    lines = []
     for item in result_from_openpose:
         distances = get_relative_distances(item.keypoints)
-        if class_number is not None:
-            distances.append(class_number)
-        write_data(distances, result_file_path)
+        if class_num is not None:
+            distances.append(class_num)
+        lines.append(distances)
+    return lines
 
 
-def run_openpose_with_distance_and_degree_calc(input_file_path, result_file_path, net_res_width, net_res_height,
-                                               class_number):
-    result_from_openpose = run_openpose_algorithm(net_res_width, net_res_height, input_file_path)
+def get_distances_and_angles(result_from_openpose, class_num=None):
+    lines = []
     for item in result_from_openpose:
         features = get_relative_distances(item.keypoints)
         features.extend(get_keypoint_angles(item.keypoints))
-        if class_number is not None:
-            features.append(class_number)
-        write_data(features, result_file_path)
+        if class_num is not None:
+            features.append(class_num)
+        lines.append(features)
+    return lines

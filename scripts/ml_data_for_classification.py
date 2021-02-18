@@ -2,7 +2,7 @@ import pandas
 from sklearn.model_selection import train_test_split
 
 
-class MlDataForClassification:
+class MlDataForModelTraining:
     def __init__(self, csv_path, test_size, random_state):
         csv_data = pandas.read_csv(csv_path, header=None)
         data_as_2d_array = csv_data.values
