@@ -1,7 +1,9 @@
 import pickle
 
-from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split, GridSearchCV
 
+from scripts.helpers.dictionaries import pose_to_class_num
 from scripts.openpose_algorithm import run_openpose_algorithm
 
 
@@ -28,4 +30,16 @@ def load_model_and_predict(model_file, images_data):
     return result
 
 
+def best_hyperparameters(parameters, classifier, data):
+    clf = GridSearchCV(classifier, parameters)
+    results = clf.fit(data.data, data.class_labels)
+    print('Best Mean Accuracy: %.3f' % results.best_score_)
+    print('Best Config: %s' % results.best_params_)
 
+
+def per_class_accuracy(classifier_file, test_data):
+    true_labels = test_data.labels_test
+    predicted = load_model_and_predict(classifier_file, test_data.data_test)
+    report = classification_report(true_labels, predicted, target_names=pose_to_class_num.keys())
+    print(report)
+    return report
