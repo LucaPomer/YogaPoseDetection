@@ -46,3 +46,17 @@ def sort_images_by_size(file_path):
         full_path_files.append(file_path + '/' + file)
     full_path_files.sort(key=lambda f: os.stat(f).st_size, reverse=True)
     return full_path_files
+
+
+def add_flipped_images(classes_folder):
+    for class_folder in os.listdir(classes_folder):
+        full_class_path = classes_folder + '/' + class_folder
+        for image_path in os.listdir(full_class_path):
+            full_img_path = full_class_path + '/' + image_path
+            flipped_img_path = full_class_path + '/' + 'flip' + image_path
+            try:
+                img = cv2.imread(full_img_path)
+                img_flip_lr = cv2.flip(img, 1)
+                cv2.imwrite(flipped_img_path, img_flip_lr)
+            except:
+                print(flipped_img_path)

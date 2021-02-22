@@ -13,7 +13,7 @@ def distance_calc_and_write_data(result_from_openpose, result_file_path, class_n
     write_multiple_lines(lines, result_file_path)
 
 
-def distance_and_degree_calc_and_write_data(result_from_openpose, result_file_path, class_number=None):
+def angle_and_dist_calc_and_write_data(result_from_openpose, result_file_path, class_number=None):
     lines = get_distances_and_angles(result_from_openpose, class_number)
     write_multiple_lines(lines, result_file_path)
 

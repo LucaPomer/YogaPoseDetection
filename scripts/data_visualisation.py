@@ -20,9 +20,12 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-my_data = genfromtxt('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/anglesNew.csv', delimiter=',',
-                     usecols=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
-classes = genfromtxt('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/anglesNew.csv', delimiter=',', usecols=(11,))
+from scripts.ml_data_for_classification import MlDataForModelTraining
+
+all_data = MlDataForModelTraining('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/angles_with_flipped.csv', 0.33, 42)
+# my_data = genfromtxt('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/anglesNew.csv', delimiter=',',
+#                      usecols=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+# classes = genfromtxt('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/anglesNew.csv', delimiter=',', usecols=(11,))
 
 #  OPTION 1: show some of the data for example some specific angles
 # plt.scatter(my_data[classes == 1][0], my_data[classes == 1][1], label='class 1', c='red')
@@ -44,11 +47,14 @@ classes = genfromtxt('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/angl
 #  OPTION 3: use Dimensionality Reduction with Linear Discriminant Analysis
 lda = make_pipeline(StandardScaler(),
                     LinearDiscriminantAnalysis(n_components=2))
-transformed = pd.DataFrame(lda.fit_transform(my_data, classes))
+transformed = pd.DataFrame(lda.fit_transform(all_data.data, all_data.class_labels))
 
-plt.scatter(transformed[classes == 1][0], transformed[classes == 1][1], label='tree', c='red')
-plt.scatter(transformed[classes == 3][0], transformed[classes == 3][1], label='bridge', c='blue')
-plt.scatter(transformed[classes == 2][0], transformed[classes == 2][1], label='downwardDog', c='green')
+plt.scatter(transformed[all_data.class_labels == 1][0], transformed[all_data.class_labels == 1][1], label='tree', c='red')
+plt.scatter(transformed[all_data.class_labels == 3][0], transformed[all_data.class_labels == 3][1], label='bridge', c='blue')
+plt.scatter(transformed[all_data.class_labels == 2][0], transformed[all_data.class_labels == 2][1], label='downwardDog', c='green')
+plt.scatter(transformed[all_data.class_labels == 4][0], transformed[all_data.class_labels == 4][1], label='tree', c='purple')
+plt.scatter(transformed[all_data.class_labels == 5][0], transformed[all_data.class_labels == 5][1], label='bridge', c='black')
+plt.scatter(transformed[all_data.class_labels == 6][0], transformed[all_data.class_labels == 6][1], label='downwardDog', c='orange')
 
 plt.legend(loc=2)
 plt.show()

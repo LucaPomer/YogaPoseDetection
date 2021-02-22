@@ -7,5 +7,6 @@ pose_to_class_num = {
     "plank": 6,
     "seatedforward": 7,
     "triangle": 8,
-    "warrior": 9
+    "warrior1": 9,
+    "warrior2": 10
 }
