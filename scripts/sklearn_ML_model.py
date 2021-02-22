@@ -57,8 +57,11 @@ tree = DecisionTreeClassifier()
 ## training and saving the optimal models
 optimal_svm = SVC(kernel='rbf', C=1)
 # train_and_save_model(optimal_svm, all_data, 'SVC_optimal_svm_angles.sav')
+optimal_tree = DecisionTreeClassifier(max_depth=9)
+train_and_save_model(optimal_tree, all_data, 'Tree_optimal_angles.sav')
 
-per_class_accuracy('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/SVC_optimal_svm_angles.sav', all_data)
+gauss = GaussianProcessClassifier(1.0 * Matern(length_scale=1, nu=1.5))
+train_and_save_model(optimal_tree, all_data, 'Gauss_optimal_angles.sav')
 
 ## get prediciton from unseen images
 # net_res_width = 512

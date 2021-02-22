@@ -24,9 +24,9 @@ def compare_classifiers(model_array, all_data):
 def load_model_and_predict(model_file, images_data):
     # load the model from disk
     loaded_model = pickle.load(open(model_file, 'rb'))
-    print(images_data)
+    # print(images_data)
     result = loaded_model.predict(images_data)
-    print(result)
+    # print(result)
     return result
 
 
@@ -40,6 +40,15 @@ def best_hyperparameters(parameters, classifier, data):
 def per_class_accuracy(classifier_file, test_data):
     true_labels = test_data.labels_test
     predicted = load_model_and_predict(classifier_file, test_data.data_test)
-    report = classification_report(true_labels, predicted, target_names=pose_to_class_num.keys())
-    print(report)
+    report = classification_report(true_labels, predicted, target_names=pose_to_class_num.keys(), output_dict=True)
     return report
+
+
+def get_class_percisions_array(accuracy_matrix):
+    accuracy = []
+    # labels = []
+    for k, v in accuracy_matrix.items():
+        if pose_to_class_num.__contains__(k):
+            accuracy.append(round(v.get('precision'), 3))
+            # labels.append(k)
+    return accuracy
