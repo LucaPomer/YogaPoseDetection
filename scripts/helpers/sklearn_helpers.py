@@ -1,6 +1,6 @@
 import pickle
-
-from sklearn.metrics import classification_report
+import matplotlib.pyplot as plt
+from sklearn.metrics import classification_report, plot_confusion_matrix, confusion_matrix
 from sklearn.model_selection import train_test_split, GridSearchCV
 
 from scripts.helpers.dictionaries import pose_to_class_num
@@ -40,8 +40,11 @@ def best_hyperparameters(parameters, classifier, data):
 def per_class_accuracy(classifier_file, test_data):
     true_labels = test_data.labels_test
     predicted = load_model_and_predict(classifier_file, test_data.data_test)
-    report = classification_report(true_labels, predicted, target_names=pose_to_class_num.keys(), output_dict=True)
-    return report
+    disp = confusion_matrix(true_labels, predicted,
+                            normalize="true")
+    print(disp.diagonal())
+    # plt.show()
+    return disp.diagonal()
 
 
 def get_class_percisions_array(accuracy_matrix):
@@ -49,6 +52,6 @@ def get_class_percisions_array(accuracy_matrix):
     # labels = []
     for k, v in accuracy_matrix.items():
         if pose_to_class_num.__contains__(k):
-            accuracy.append(round(v.get('precision'), 3))
+            accuracy.append(round(v.get('precision'), 2))
             # labels.append(k)
     return accuracy

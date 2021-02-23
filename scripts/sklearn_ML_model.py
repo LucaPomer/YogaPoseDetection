@@ -33,18 +33,7 @@ classifiers = [
     GaussianNB(),
     QuadraticDiscriminantAnalysis()]
 
-parameters_gaus = {'multi_class': ('one_vs_rest', 'one_vs_one'), 'max_iter_predict':[50,100]}
-parameters_tree = {'max_depth': [5, 6, 7, 8 , 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 30]}
-parameters_svc = {'kernel': ('linear', 'rbf', 'poly', 'sigmoid'), 'C': [0.025,0.1, 0.5, 1]}
-parametersNN = {'activation': ('identity', 'logistic', 'tanh', 'relu'), 'hidden_layer_sizes': [10, 100],
-                'max_iter': [1000, 5000]}
-
-gaus = GaussianProcessClassifier(1.0 * Matern(length_scale=1, nu=1.5))
-svc = svm.SVC()
-mlp = MLPClassifier()
-tree = DecisionTreeClassifier()
-
-# best_hyperparameters(parameters_gaus, gaus, all_data)
+per_class_svm = per_class_accuracy('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/SVC_optimal_svm_angles.sav', all_data)
 
 
 # clf = MLPClassifier(random_state=1, max_iter=400)
@@ -53,25 +42,4 @@ tree = DecisionTreeClassifier()
 #
 # clf.score(all_data.data_test, all_data.labels_test)
 # print(gaus.score(all_data.data_test, all_data.labels_test))
-
-## training and saving the optimal models
-optimal_svm = SVC(kernel='rbf', C=1)
-# train_and_save_model(optimal_svm, all_data, 'SVC_optimal_svm_angles.sav')
-optimal_tree = DecisionTreeClassifier(max_depth=9)
-train_and_save_model(optimal_tree, all_data, 'Tree_optimal_angles.sav')
-
-gauss = GaussianProcessClassifier(1.0 * Matern(length_scale=1, nu=1.5))
-train_and_save_model(optimal_tree, all_data, 'Gauss_optimal_angles.sav')
-
-## get prediciton from unseen images
-# net_res_width = 512
-# net_res_height = 256
-# images_to_classify = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/unlabled_images'
-#
-# result_from_openpose = run_openpose_algorithm(net_res_width, net_res_height, images_to_classify)
-# angles = get_angles(result_from_openpose)
-# classResult = load_model_and_predict('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/SVC_optimal_svm_angles.sav', angles)
-#
-
-
 
