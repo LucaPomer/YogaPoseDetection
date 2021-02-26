@@ -1,10 +1,8 @@
 import pickle
-import matplotlib.pyplot as plt
-from sklearn.metrics import classification_report, plot_confusion_matrix, confusion_matrix
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.metrics import confusion_matrix, accuracy_score
+from sklearn.model_selection import GridSearchCV
 
 from scripts.helpers.dictionaries import pose_to_class_num
-from scripts.openpose_algorithm import run_openpose_algorithm
 
 
 def train_and_save_model(model, all_data, save_file_name):
@@ -18,7 +16,9 @@ def compare_classifiers(model_array, all_data):
         print(classifier)
         # print("real value " + str(y_test))
         # print("prediciton " + str(classifier.predict(X_test)))
-        print(classifier.score(all_data.data_test, all_data.labels_test))
+        scores = accuracy_score(all_data.labels_test, classifier.predict(all_data.data_test))
+        print(scores)
+        return scores
 
 
 def load_model_and_predict(model_file, images_data):
@@ -31,10 +31,12 @@ def load_model_and_predict(model_file, images_data):
 
 
 def best_hyperparameters(parameters, classifier, data):
-    clf = GridSearchCV(classifier, parameters)
-    results = clf.fit(data.data, data.class_labels)
+    clf = GridSearchCV(classifier, parameters, scoring='accuracy')
+    results = clf.fit(data.data_train, data.labels_train)
     print('Best Mean Accuracy: %.3f' % results.best_score_)
     print('Best Config: %s' % results.best_params_)
+    optimised_model = clf.best_estimator_
+    return optimised_model
 
 
 def per_class_accuracy(classifier_file, test_data):

@@ -1,7 +1,7 @@
 import os
 
 from scripts.helpers.data_manipulation_helpers import write_data
-from scripts.openpose_algorithm import run_openpose_algorithm
+from scripts.Openpose.openpose_algorithm import run_openpose_algorithm
 
 
 def get_num_files(folder_path):
@@ -29,7 +29,8 @@ def optimal_net_res(file_path, num_tries, min_height, step_size):
                 optimal_res_height = net_res_height
                 optimal_res_width = net_res_width
             net_res_width += step_size
-            write_data([net_res_width, net_res_height, accuracy, accuracy_found_skeletons], '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/accuracy.csv')
+            write_data([net_res_width, net_res_height, accuracy, accuracy_found_skeletons],
+                       '/accuracy_per_resolution.csv')
         net_res_height += step_size
         net_res_width = min_height
     print("optimal net res width " + str(optimal_res_width) + " optimal res height " + str(optimal_res_height) + " best accuracy: " + str(best_accuracy))

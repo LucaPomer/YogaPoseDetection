@@ -3,9 +3,8 @@ import os
 from scripts.helpers.data_creation_helpers import distance_calc_and_write_data, \
     angle_and_dist_calc_and_write_data, angle_calc_and_write_data
 from scripts.helpers.data_manipulation_helpers import write_data
-from scripts.openpose_algorithm import run_openpose_algorithm
-from scripts.preprocess_image_folders import split_file, get_file_class_num, resize_images_to_scale, \
-    sort_images_by_size, add_flipped_images
+from scripts.Openpose.openpose_algorithm import run_openpose_algorithm
+from scripts.preprocess_image_folders import split_file, get_file_class_num
 
 images_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/images/part2'
 

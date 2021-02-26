@@ -1,6 +1,6 @@
 import numpy as np
 
-from scripts.op_skeleton import OpSkeleton
+from scripts.Openpose.op_skeleton import OpSkeleton
 
 
 def get_keypoint_angles(keypoints):

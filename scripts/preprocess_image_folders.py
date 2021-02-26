@@ -1,18 +1,9 @@
 import re
-
-import os
 import shutil
 import cv2
 import os
 
 from scripts.helpers.dictionaries import pose_to_class_num
-
-
-def resize_images_to_scale(width, height, file_path, dst_file_path):
-    for img_path in os.listdir(file_path):
-        full_img_path = file_path + '/' + img_path
-        img_elem = cv2.imread(full_img_path)
-        cv2.imwrite(dst_file_path + '/' + img_path, cv2.resize(img_elem, (width, height), interpolation=cv2.INTER_AREA))
 
 
 def get_file_class_num(folder_path):
