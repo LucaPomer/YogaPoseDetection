@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
 
-from scripts.ml_data_for_classification import MlDataForModelTraining
+from scripts.machineLearning.ml_data_for_classification import MlDataForModelTesting
 
 
 def accuracy_bar_chart(accuracy_array, labels, classifier_name):
@@ -33,17 +33,17 @@ def accuracy_bar_chart(accuracy_array, labels, classifier_name):
 
 def get_per_data_accuacy(angle_model, dist_model, both_model):
     accuracies = []
-    all_data_angles = MlDataForModelTraining(
-        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/angles_with_flipped.csv', 0.33, 42)
+    test_data_angles = MlDataForModelTesting(
+        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/test_data_angles.csv')
 
-    all_data_dist = MlDataForModelTraining(
-        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/dist_with_flipped.csv', 0.33, 42)
+    test_data_dist = MlDataForModelTesting(
+        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/test_data_dist.csv')
 
-    all_data_both = MlDataForModelTraining(
-        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/both_with_flipped.csv', 0.33, 42)
+    test_data_both = MlDataForModelTesting(
+                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/test_data_both.csv')
 
-    accuracies.append(accuracy_score(all_data_angles.labels_test, angle_model.predict(all_data_angles.data_test)))
-    accuracies.append(accuracy_score(all_data_dist.labels_test, dist_model.predict(all_data_dist.data_test)))
-    accuracies.append(accuracy_score(all_data_both.labels_test, both_model.predict(all_data_both.data_test)))
+    accuracies.append(accuracy_score(test_data_angles.test_labels, angle_model.predict(test_data_angles.test_data)))
+    accuracies.append(accuracy_score(test_data_dist.test_labels, dist_model.predict(test_data_dist.test_data)))
+    accuracies.append(accuracy_score(test_data_both.test_labels, both_model.predict(test_data_both.test_data)))
     print(accuracies)
     return accuracies

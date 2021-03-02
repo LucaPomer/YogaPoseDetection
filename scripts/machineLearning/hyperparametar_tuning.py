@@ -4,11 +4,11 @@ from sklearn.gaussian_process.kernels import Matern, RBF, DotProduct, RationalQu
 from sklearn.neural_network import MLPClassifier
 from sklearn.tree import DecisionTreeClassifier
 
-from scripts.helpers.sklearn_helpers import best_hyperparameters, train_and_save_model
-from scripts.ml_data_for_classification import MlDataForModelTraining
+from scripts.helpers.sklearn_helpers import best_hyperparameters
+from scripts.machineLearning.ml_data_for_classification import MlDataForModelTraining
 
-all_data = MlDataForModelTraining(
-    '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/both_with_flipped.csv', 0.33, 42)
+all_train_data = MlDataForModelTraining(
+    '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/train_data_angles_with_flipped.csv')
 
 parameters_gaus = {'kernel': [1*RBF(), 1*DotProduct(), 1*Matern(length_scale=1, nu=1.5),  1*RationalQuadratic(), 1*WhiteKernel()]}
 parameters_tree = {'max_depth': [5, 6, 7, 8 , 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 30]}
@@ -26,8 +26,8 @@ svc = svm.SVC()
 mlp = MLPClassifier(max_iter=20000)
 tree = DecisionTreeClassifier()
 
-optimal_gauss = best_hyperparameters(parameters_gaus, gaus, all_data)
-# optimal_mlp = best_hyperparameters(parameter_mlp, mlp, all_data)
-# optimal_tree = best_hyperparameters(parameters_tree, tree, all_data)
-# optimal_svc = best_hyperparameters(parameters_svc, svc, all_data)
+optimal_gauss = best_hyperparameters(parameters_gaus, gaus, all_train_data)
+# optimal_mlp = best_hyperparameters(parameter_mlp, mlp, all_train_data)
+optimal_tree = best_hyperparameters(parameters_tree, tree, all_train_data)
+optimal_svc = best_hyperparameters(parameters_svc, svc, all_train_data)
 

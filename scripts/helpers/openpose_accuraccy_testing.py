@@ -39,7 +39,7 @@ def optimal_net_res(file_path, num_tries, min_height, step_size):
 
 def get_accuracy(result_from_openpose, num_files_in_folder, respective_to_all_files):
     total_found_keypoints = 0
-    print("num images " + str(len(result_from_openpose)))
+    print("num training_images " + str(len(result_from_openpose)))
     for result_obj in result_from_openpose:
         num_non_zero_points = result_obj.number_found_keypoints()
         total_found_keypoints += num_non_zero_points

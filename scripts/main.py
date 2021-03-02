@@ -6,11 +6,19 @@ from scripts.helpers.data_manipulation_helpers import write_data
 from scripts.Openpose.openpose_algorithm import run_openpose_algorithm
 from scripts.preprocess_image_folders import split_file, get_file_class_num
 
-images_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/images/part2'
 
-angles_result_file_path = '/csv_data_files/angles_with_flipped.csv'
-dist_result_file_path = '/csv_data_files/dist_with_flipped.csv'
-both_result_file_path = '/csv_data_files/both_with_flipped.csv'
+
+### TRAIN DATA
+# images_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/training_images/part2'
+# angles_result_file_path = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/train_data_angles_with_flipped.csv'
+# dist_result_file_path = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/train_data_dist_with_flipped.csv'
+# both_result_file_path = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/train_data_both_with_flipped.csv'
+
+## TEST DATA
+images_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/test_images'
+angles_result_file_path = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/test_data_angles.csv'
+dist_result_file_path = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/test_data_dist.csv'
+both_result_file_path = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/test_data_both.csv'
 
 ##  split_file(input_file_path, 5)
 class_number = get_file_class_num(images_folder)
@@ -44,7 +52,7 @@ for class_folder in os.listdir(images_folder):
             angle_calc_and_write_data(result_from_openpose, angles_result_file_path, class_number)
             distance_calc_and_write_data(result_from_openpose, dist_result_file_path, class_number)
             angle_and_dist_calc_and_write_data(result_from_openpose, both_result_file_path, class_number)
-            write_data([full_folder_path], '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/batchesComplete.csv')
+            write_data([full_folder_path], '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/batchesComplete_test.csv')
     except:
         print("problem with folder: " + batch_folder)
 # optimal_net_res(input_file_path, 8, 128, 64)

@@ -8,7 +8,7 @@ def define_parser(images_directory):
     parser = argparse.ArgumentParser()
     parser.add_argument('--number_people_max', type=int, default=1)
     parser.add_argument("--image_dir", default=images_directory,
-                        help="Process a directory of images. Read all standard formats (jpg, png, bmp, etc.).")
+                        help="Process a directory of training_images. Read all standard formats (jpg, png, bmp, etc.).")
     parser.add_argument("--no_display", default=False, help="Enable to disable the visual display.")
     return parser
 

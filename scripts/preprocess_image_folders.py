@@ -3,7 +3,7 @@ import shutil
 import cv2
 import os
 
-from scripts.helpers.dictionaries import pose_to_class_num
+from scripts.helpers.pose_to_class_dict import pose_to_class_num
 
 
 def get_file_class_num(folder_path):

@@ -10,6 +10,13 @@ from scripts.helpers.openpose_helpers import define_parser, define_params, get_k
 from scripts.Openpose.openpose_result import OpenposeResult
 
 
+# @article{8765346,
+#   author = {Z. {Cao} and G. {Hidalgo Martinez} and T. {Simon} and S. {Wei} and Y. A. {Sheikh}},
+#   journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+#   title = {OpenPose: Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields},
+#   year = {2019}
+# }
+
 def run_openpose_algorithm(net_width, net_height, img_dir):
     try:
         # Import Openpose (Windows/Ubuntu/OSX) -- give the path to the openpose build
@@ -19,7 +26,8 @@ def run_openpose_algorithm(net_width, net_height, img_dir):
             if platform == "win32":
                 # Change these variables to point to the correct folder (Release/x64 etc.)
                 sys.path.append(dir_path + '/../../python/openpose/Release');
-                os.environ['PATH'] = os.environ['PATH'] + ';' + dir_path + '/../../x64/Release;' + dir_path + '/../../bin;'
+                os.environ['PATH'] = os.environ[
+                                         'PATH'] + ';' + dir_path + '/../../x64/Release;' + dir_path + '/../../bin;'
                 import pyopenpose as op
             else:
                 # Change these variables to point to the correct folder (Release/x64 etc.) sys.path.append(

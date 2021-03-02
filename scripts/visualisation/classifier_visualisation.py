@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 import sklearn
 from sklearn.tree import DecisionTreeClassifier
-from scripts.ml_data_for_classification import MlDataForModelTraining
+from scripts.machineLearning.ml_data_for_classification import MlDataForModelTraining
 
 
 
 all_data = MlDataForModelTraining(
-    '/csv_data_files/angles_with_flipped.csv', 0.33, 42)
+    '/csv_data_files/train_data_angles_with_flipped.csv', 0.33, 42)
 
 fig = plt.figure(figsize=(25,20))
 clf = DecisionTreeClassifier(max_depth=9)
