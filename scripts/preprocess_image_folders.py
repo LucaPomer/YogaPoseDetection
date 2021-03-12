@@ -13,7 +13,7 @@ def get_file_class_num(folder_path):
     return -1
 
 
-def split_file(file_path, img_per_folder):
+def split_and_sort_file(file_path, img_per_folder):
     batch_num = 1
     sorted_by_size = sort_images_by_size(file_path)
     dst_path = file_path + '/batch' + str(batch_num)

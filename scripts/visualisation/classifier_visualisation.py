@@ -3,17 +3,13 @@ import sklearn
 from sklearn.tree import DecisionTreeClassifier
 from scripts.machineLearning.ml_data_for_classification import MlDataForModelTraining
 
+train_data = MlDataForModelTraining(
+    '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/train_data_angles_with_flipped.csv')
 
-
-all_data = MlDataForModelTraining(
-    '/csv_data_files/train_data_angles_with_flipped.csv', 0.33, 42)
-
-fig = plt.figure(figsize=(25,20))
-clf = DecisionTreeClassifier(max_depth=9)
-clf.fit(all_data.data_train, all_data.labels_train)
+fig = plt.figure(figsize=(25, 20))
+clf = DecisionTreeClassifier(max_depth=6)
+clf.fit(train_data.train_data, train_data.train_labels)
 
 print(sklearn.tree.plot_tree(clf))
+plt.tight_layout()
 plt.show()
-
-
-
