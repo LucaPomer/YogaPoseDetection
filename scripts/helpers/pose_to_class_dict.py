@@ -1,12 +1,12 @@
 pose_to_class_num = {
-    "tree": 1,
-    "downwarddog": 2,
-    "bridge": 3,
-    "child": 4,
-    "mountain": 5,
-    "plank": 6,
-    "seatedforward": 7,
-    "triangle": 8,
-    "warrior1": 9,
-    "warrior2": 10
+    "tree": 0,
+    "downwarddog": 1,
+    "bridge": 2,
+    "child": 3,
+    "mountain": 4,
+    "plank": 5,
+    "seatedforward": 6,
+    "triangle": 7,
+    "warrior1": 8,
+    "warrior2": 9
 }

@@ -59,12 +59,12 @@ def run_openpose_algorithm(net_width, net_height, img_dir):
         print(args[0].image_dir)
         for image_path in image_paths:
             datum = op.Datum()
-            keypoints = get_keypoints_first_human(op, image_path, opWrapper, datum)
-            if keypoints is not None:
-                result = OpenposeResult(keypoints, image_path, datum.cvOutputData)
+            key_points = get_keypoints_first_human(op, image_path, opWrapper, datum)
+            if key_points is not None:
+                result = OpenposeResult(key_points, image_path, datum.cvOutputData)
                 return_list.append(result)
             else:
-                write_data([image_path], '../failed_images.csv')
+                write_data([image_path], '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/failed_images.csv')
 
         end = time.time()
         print("OpenPose COMPLETE Total time: " + str(end - start) + " seconds " + str(args[0].image_dir)

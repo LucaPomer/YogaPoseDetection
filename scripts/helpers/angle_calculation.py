@@ -45,7 +45,6 @@ def get_keypoint_angles(keypoints):
 
 
 def get_angle(point_a, point_b, point_c):
-    # print(point_a, point_b, point_c)
     if point_a.all() == 0 or point_b.all() == 0 or point_c.all() == 0:
         return 0.0
     ba = point_a - point_b
@@ -53,3 +52,4 @@ def get_angle(point_a, point_b, point_c):
     cosine_angle = np.dot(ba, bc) / (np.linalg.norm(ba) * np.linalg.norm(bc))
     angle = np.arccos(cosine_angle)
     return np.degrees(angle)
+
