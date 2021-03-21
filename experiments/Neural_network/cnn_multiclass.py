@@ -45,9 +45,9 @@ batch_size = 32
 #                                             class_mode = 'categorical')
 
 train_data_angles = MlDataForModelTraining(
-    '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/train_data_angles_with_flipped.csv')
+    '/csv_data_files/train_data_angles_with_flipped.csv')
 test_data = MlDataForModelTesting(
-    '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/test_data_angles.csv')
+    '/csv_data_files/test_data_angles.csv')
 
 classifier.fit(train_data_angles.train_data,
                 # number of training set images, 729

@@ -8,9 +8,9 @@ from scripts.helpers.sklearn_helpers import train_and_save_model
 from scripts.machineLearning.ml_data_for_classification import MlDataForModelTraining, MlDataForModelTesting
 
 train_data = MlDataForModelTraining(
-    '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/gaus_old')
+    '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/less_train_data/train_data_both_with_flipped - train_data_both_with_flipped.csv')
 
-test_data = MlDataForModelTesting('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/test_gaus_old')
+test_data = MlDataForModelTesting('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/less_train_data/test_data_both - test_data_both.csv')
 #
 # # optimal_svm_angles = make_pipeline(StandardScaler(), SVC(kernel='rbf', C=1))
 # optimal_svm_angles = SVC(kernel='rbf', C=1)
@@ -20,7 +20,7 @@ test_data = MlDataForModelTesting('/Users/lucapomer/Documents/bachelor/YogaPoseD
 
 gauss_both = GaussianProcessClassifier(1**2 * RationalQuadratic(alpha=1, length_scale=1), max_iter_predict=100)
 gauss_both.fit(train_data.train_data, train_data.train_labels)
-pickle.dump(gauss_both, open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/gaus_test.sav', 'wb'))
+pickle.dump(gauss_both, open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/less_train_data/gaus_test_less_data.sav', 'wb'))
 
-# loaded_model = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/Mlp_optimal_angles.sav', 'rb'))
-print(accuracy_score(test_data.test_labels, gauss_both.predict(test_data.test_data)))
+loaded_model = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/less_train_data/gaus_test_less_data.sav', 'rb'))
+print(accuracy_score(test_data.test_labels, loaded_model.predict(test_data.test_data)))

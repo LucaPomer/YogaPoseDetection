@@ -27,7 +27,7 @@ net_res_height = 256
 batch_size = 5
 
 ## Add FLipped images
-# add_flipped_images(train_images_folder_pt2)
+add_flipped_images(train_images_folder_pt2)
 
 ##Create Data
 # create_classification_data(train_images_folder_pt1,train_angles_result_file_path,
