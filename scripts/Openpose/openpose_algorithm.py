@@ -64,7 +64,7 @@ def run_openpose_algorithm(net_width, net_height, img_dir):
                 result = OpenposeResult(key_points, image_path, datum.cvOutputData)
                 return_list.append(result)
             else:
-                write_data([image_path], '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/failed_images.csv')
+                write_data([image_path], '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/failed_images_openpose.csv')
 
         end = time.time()
         print("OpenPose COMPLETE Total time: " + str(end - start) + " seconds " + str(args[0].image_dir)
