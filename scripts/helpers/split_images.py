@@ -22,6 +22,7 @@ def split_images(classes_folder, split_ration, train_folder, test_folder):
                 new_image_folder = train_folder+"/" + class_folder + "/" +image
 
             shutil.move(full_image_file_name, new_image_folder)
+            num_int_test +=1
 
 
 

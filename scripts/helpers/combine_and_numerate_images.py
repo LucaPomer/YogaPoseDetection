@@ -21,53 +21,53 @@ def combine_and_numerate(folder1, folder2, output_folder, class_name):
         file_num += 1
 
 
-combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/test_set/bridge',
-                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/training_set/bridge',
-                     output_folder='/Users/lucapomer/Documents/bachelor/YogaPoseDetection/combined_images/bridge',
+combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/test_set/bridge',
+                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/training_set/bridge',
+                     output_folder='/Users/lucapomer/Documents/bachelor/YogaPoseDetection/combined_images',
                      class_name='bridge')
 
-combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/test_set/childs',
-                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/training_set/childs',
+combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/test_set/childs',
+                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/training_set/childs',
                      output_folder='/Users/lucapomer/Documents/bachelor/YogaPoseDetection/combined_images',
                      class_name='childs')
 
-combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/test_set/downwarddog',
-                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/training_set/downwarddog',
+combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/test_set/downwarddog',
+                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/training_set/downwarddog',
                      output_folder='/Users/lucapomer/Documents/bachelor/YogaPoseDetection/combined_images',
                      class_name='downwarddog')
 
-combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/test_set/mountain',
-                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/training_set/mountain',
+combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/test_set/mountain',
+                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/training_set/mountain',
                      output_folder='/Users/lucapomer/Documents/bachelor/YogaPoseDetection/combined_images',
                      class_name='mountain')
 
-combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/test_set/plank',
-                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/training_set/plank',
+combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/test_set/plank',
+                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/training_set/plank',
                      output_folder='/Users/lucapomer/Documents/bachelor/YogaPoseDetection/combined_images',
                      class_name='plank')
 
-combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/test_set/seatedforwardbend',
-                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/training_set/seatedforwardbend',
+combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/test_set/seatedforwardbend',
+                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/training_set/seatedforwardbend',
                      output_folder='/Users/lucapomer/Documents/bachelor/YogaPoseDetection/combined_images',
                      class_name='seatedforwardbend')
 
-combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/test_set/tree',
-                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/training_set/tree',
+combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/test_set/tree',
+                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/training_set/tree',
                      output_folder='/Users/lucapomer/Documents/bachelor/YogaPoseDetection/combined_images',
                      class_name='tree')
 
-combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/test_set/trianglepose',
-                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/training_set/trianglepose',
+combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/test_set/trianglepose',
+                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/training_set/trianglepose',
                      output_folder='/Users/lucapomer/Documents/bachelor/YogaPoseDetection/combined_images',
                      class_name='trianglepose')
 
-combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/test_set/warrior1',
-                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/training_set/warrior1',
+combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/test_set/warrior1',
+                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/training_set/warrior1',
                      output_folder='/Users/lucapomer/Documents/bachelor/YogaPoseDetection/combined_images',
                      class_name='warrior1')
 
-combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/test_set/warrior2',
-                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/training_set/warrior2',
+combine_and_numerate('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/test_set/warrior2',
+                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/orginial_image_folders/training_set/warrior2',
                      output_folder='/Users/lucapomer/Documents/bachelor/YogaPoseDetection/combined_images',
                      class_name='warrior2')
 
