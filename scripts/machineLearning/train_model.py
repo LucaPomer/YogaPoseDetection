@@ -17,6 +17,7 @@ train_data_dist = MlDataForModelTraining(
 train_data_both = MlDataForModelTraining(
     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/train_data_both_with_flipped.csv')
 
+model_foler = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models'
 
 optimal_svm_angles = SVC(kernel='rbf', C=1)
 optimal_svm_dist = SVC(kernel='poly', C=1)

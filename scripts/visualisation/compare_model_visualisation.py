@@ -4,22 +4,24 @@ import numpy as np
 
 from scripts.helpers.charts_helperse import get_per_data_accuacy
 
-gauss_model_dist = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/Gauss_optimal_dist.sav', 'rb'))
-gauss_model_angles = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/Gauss_optimal_angles.sav', 'rb'))
-gauss_model_both = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/Gauss_optimal_both.sav', 'rb'))
+models_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models'
 
-scv_model_angles = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/SVC_optimal_angles.sav', 'rb'))
-scv_model_dist = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/SVC_optimal_dist.sav', 'rb'))
-scv_model_both = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/SVC_optimal_both.sav', 'rb'))
+gauss_model_dist = pickle.load(open(models_folder + '/Gauss_optimal_dist.sav', 'rb'))
+gauss_model_angles = pickle.load(open( models_folder +'/Gauss_optimal_angles.sav', 'rb'))
+gauss_model_both = pickle.load(open(models_folder +'/Gauss_optimal_both.sav', 'rb'))
+
+scv_model_angles = pickle.load(open(models_folder +'/SVC_optimal_angles.sav', 'rb'))
+scv_model_dist = pickle.load(open(models_folder +'/SVC_optimal_dist.sav', 'rb'))
+scv_model_both = pickle.load(open(models_folder +'/SVC_optimal_both.sav', 'rb'))
 
 
-tree_model_angles = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/Tree_optimal_angles.sav', 'rb'))
-tree_model_dist = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/Tree_optimal_dist.sav', 'rb'))
-tree_model_both = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/Tree_optimal_both.sav', 'rb'))
+tree_model_angles = pickle.load(open(models_folder +'/Tree_optimal_angles.sav', 'rb'))
+tree_model_dist = pickle.load(open(models_folder +'/Tree_optimal_dist.sav', 'rb'))
+tree_model_both = pickle.load(open(models_folder +'/Tree_optimal_both.sav', 'rb'))
 
-mlp_model_angles = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/Mlp_optimal_angles.sav', 'rb'))
-mlp_model_dist = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/Mlp_optimal_dist.sav', 'rb'))
-mlp_model_both = pickle.load(open('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/Mlp_optimal_both.sav', 'rb'))
+mlp_model_angles = pickle.load(open(models_folder +'/Mlp_optimal_angles.sav', 'rb'))
+mlp_model_dist = pickle.load(open(models_folder +'/Mlp_optimal_dist.sav', 'rb'))
+mlp_model_both = pickle.load(open(models_folder +'/Mlp_optimal_both.sav', 'rb'))
 
 scv_accuracys = get_per_data_accuacy(scv_model_angles, scv_model_dist, scv_model_both)
 gauss_accuracies = get_per_data_accuacy(gauss_model_angles, gauss_model_dist, gauss_model_both)
@@ -37,12 +39,13 @@ labels = ['Angles', 'Distances', 'Both']
 
 
 x = np.arange(len(labels))  # the label locations
-width = 0.25  # the width of the bars
+width = 0.15  # the width of the bars
 
 fig, ax = plt.subplots()
-svm_rects = ax.bar(x - width, rounded_svm, width, label='SVM')
-gauss_rects = ax.bar(x, rounded_gauss, width, label='Gauss')
-tree_rects = ax.bar(x + width, rounded_tree, width, label='Tree')
+svm_rects = ax.bar(x - (width *1.5), rounded_svm, width, label='SVM')
+gauss_rects = ax.bar(x -(width *0.5) , rounded_gauss, width, label='Gauss')
+tree_rects = ax.bar(x + (width*0.5), rounded_tree, width, label='Tree')
+mlp_rects = ax.bar(x + (width*1.5), rounded_mlp, width, label='MLP')
 
 # Add some text for labels, title and custom x-axis tick labels, etc.
 ax.set_ylabel('Accuracy')
@@ -67,6 +70,7 @@ def autolabel(rects):
 autolabel(svm_rects)
 autolabel(gauss_rects)
 autolabel(tree_rects)
+autolabel(mlp_rects)
 
 plt.tight_layout()
 
