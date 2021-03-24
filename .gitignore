@@ -130,3 +130,12 @@ dmypy.json
 /experiments/before_correct_split/models/Gauss_optimal_angles.sav
 /experiments/before_correct_split/models/Gauss_optimal_both.sav
 /experiments/before_correct_split/models/Gauss_optimal_dist.sav
+/experiments/own_split_test/models/Gauss_optimal_angles.sav
+/experiments/radian_test/models/Gauss_optimal_angles.sav
+/models/Gauss_optimal_angles.sav
+/experiments/own_split_test/models/Gauss_optimal_both.sav
+/experiments/radian_test/models/Gauss_optimal_both.sav
+/models/Gauss_optimal_both.sav
+/experiments/own_split_test/models/Gauss_optimal_dist.sav
+/experiments/radian_test/models/Gauss_optimal_dist.sav
+/models/Gauss_optimal_dist.sav

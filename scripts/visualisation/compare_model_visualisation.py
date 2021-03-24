@@ -4,7 +4,7 @@ import numpy as np
 
 from scripts.helpers.charts_helperse import get_per_data_accuacy
 
-models_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models'
+models_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/models'
 
 gauss_model_dist = pickle.load(open(models_folder + '/Gauss_optimal_dist.sav', 'rb'))
 gauss_model_angles = pickle.load(open( models_folder +'/Gauss_optimal_angles.sav', 'rb'))

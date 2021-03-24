@@ -34,13 +34,13 @@ def accuracy_bar_chart(accuracy_array, labels, classifier_name):
 def get_per_data_accuacy(angle_model, dist_model, both_model):
     accuracies = []
     test_data_angles = MlDataForModelTesting(
-        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/before_correct_split/csv_data_files/test_data_angles.csv')
+        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_angles.csv')
 
     test_data_dist = MlDataForModelTesting(
-        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/before_correct_split/csv_data_files/test_data_dist.csv')
+        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_dist.csv')
 
     test_data_both = MlDataForModelTesting(
-                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/before_correct_split/csv_data_files/test_data_both.csv')
+                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_both.csv')
 
     accuracies.append(accuracy_score(test_data_angles.test_labels, angle_model.predict(test_data_angles.test_data)))
     accuracies.append(accuracy_score(test_data_dist.test_labels, dist_model.predict(test_data_dist.test_data)))
