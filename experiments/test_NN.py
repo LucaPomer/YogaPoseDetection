@@ -58,7 +58,7 @@ model = Sequential()  # Documentation: https://keras.io/models/sequential/
 
 # The input layer requires the special input_shape parameter which should match
 # the shape of our training data.
-model.add(Dense(units=128, activation='sigmoid', input_shape=(image_size,)))  # Dense = fully connected layers
+model.add(Dense(units=256, activation='sigmoid', input_shape=(image_size,)))  # Dense = fully connected layers
 # model.add(Dense(units=128, activation='sigmoid', input_shape=(256,)))  # Dense = fully connected layers
 # model.add(Dense(units=32, activation='sigmoid', input_shape=(32,)))  # Dense = fully connected layers
 
@@ -67,7 +67,7 @@ model.compile(optimizer="sgd", loss='categorical_crossentropy', metrics=['accura
 model.summary()
 
 # Train the model and keep track of progress
-history = model.fit(x_train, y_train, batch_size=32, epochs=40, verbose=False, validation_split=.2)
+history = model.fit(x_train, y_train, batch_size=32, epochs=50, verbose=False, validation_split=.2)
 # Evaluate the model
 loss, accuracy  = model.evaluate(x_test, y_test, verbose=False)
 # Display the results
