@@ -1,5 +1,4 @@
 import keras
-from keras.datasets import mnist
 from keras.layers import Dense
 from keras.models import Sequential
 from matplotlib import pyplot as plt
@@ -50,13 +49,15 @@ model = Sequential()  # Documentation: https://keras.io/models/sequential/
 # The input layer requires the special input_shape parameter which should match
 # the shape of our training data.
 model.add(Dense(units=32, activation='sigmoid', input_shape=(num_features,)))  # Dense = fully connected layers
-model.add(Dense(units=32, activation='sigmoid'))  # Dense = fully connected layers
+model.add(Dense(units=16, activation='sigmoid'))  # Dense = fully connected layers
+# model.add(Dense(units=32, activation='sigmoid'))  # Dense = fully connected layers
+# model.add(Dense(units=32, activation='sigmoid'))  # Dense = fully connected layers
 model.add(Dense(units=num_classes, activation='softmax'))
 model.compile(optimizer="sgd", loss='categorical_crossentropy', metrics=['accuracy'])
 model.summary()
 
 # Train the model and keep track of progress
-history = model.fit(train_data_angles.train_data, y_train, batch_size=16, epochs=4, verbose=False, validation_split=.2)
+history = model.fit(train_data_angles.train_data, y_train, batch_size=16, epochs=10, verbose=False, validation_split=.2)
 
 # Evaluate the model
 loss, accuracy  = model.evaluate(test_data_angles.test_data, y_test, verbose=False)
