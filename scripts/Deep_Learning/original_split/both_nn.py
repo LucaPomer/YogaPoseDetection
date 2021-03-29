@@ -7,8 +7,8 @@ from tensorflow.python.keras.models import Sequential
 from scripts.machineLearning.ml_data_for_classification import MlDataForModelTraining, MlDataForModelTesting
 
 
-train_data = MlDataForModelTraining('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/before_correct_split/csv_data_files/train_data_both_with_flipped.csv')
-test_data = MlDataForModelTesting('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/before_correct_split/csv_data_files/test_data_both.csv')
+train_data = MlDataForModelTraining('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/old_split_run_through/csv_data_files/train_data_both_with_flipped.csv')
+test_data = MlDataForModelTesting('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/old_split_run_through/csv_data_files/test_data_both.csv')
 
 # Inspect data
 print("Training data   shape: ", train_data.train_data.shape)
@@ -36,8 +36,8 @@ model = Sequential()  # Documentation: https://keras.io/models/sequential/
 
 # The input layer requires the special input_shape parameter which should match
 # the shape of our training data.
-model.add(Dense(units=128, activation='relu', input_shape=(feature_size,)))  # Dense = fully connected layers
-model.add(Dense(units=64, activation='relu'))  # Dense = fully connected layers
+model.add(Dense(units=256, activation='relu', input_shape=(feature_size,)))  # Dense = fully connected layers
+model.add(Dense(units=128, activation='relu'))  # Dense = fully connected layers
 model.add(Dense(units=num_classes, activation='softmax'))
 model.compile(optimizer="adam", loss='kullback_leibler_divergence', metrics=['accuracy']) # default loss: categorical_crossentropy, can also be: kullback_leibler_divergence
 model.summary()
@@ -45,7 +45,7 @@ model.summary()
 # Train the model and keep track of progress
 history = model.fit(train_data.train_data, y_train,
                     batch_size=32,
-                    epochs=200,
+                    epochs=150,
                     verbose=1,
                     validation_split=0,
                     )

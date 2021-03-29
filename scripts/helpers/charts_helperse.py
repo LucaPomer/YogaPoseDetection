@@ -32,38 +32,20 @@ def accuracy_bar_chart(accuracy_array, labels, classifier_name):
     plt.show()
 
 
-def get_per_data_accuacy(angle_model, dist_model, both_model):
+def get_per_data_accuacy(angle_model, dist_model, both_model, angles_test_data, dist_test_data, both_test_data):
     accuracies = []
-    test_data_angles = MlDataForModelTesting(
-        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_angles.csv')
-
-    test_data_dist = MlDataForModelTesting(
-        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_dist.csv')
-
-    test_data_both = MlDataForModelTesting(
-                     '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_both.csv')
-
-    accuracies.append(accuracy_score(test_data_angles.test_labels, angle_model.predict(test_data_angles.test_data)))
-    accuracies.append(accuracy_score(test_data_dist.test_labels, dist_model.predict(test_data_dist.test_data)))
-    accuracies.append(accuracy_score(test_data_both.test_labels, both_model.predict(test_data_both.test_data)))
+    accuracies.append(accuracy_score(angles_test_data.test_labels, angle_model.predict(angles_test_data.test_data)))
+    accuracies.append(accuracy_score(dist_test_data.test_labels, dist_model.predict(dist_test_data.test_data)))
+    accuracies.append(accuracy_score(both_test_data.test_labels, both_model.predict(both_test_data.test_data)))
     print(accuracies)
     return accuracies
 
 
-def get_nn_per_data_accuracy(angle_model_path, dist_model_path, both_model_path):
+def get_nn_per_data_accuracy(angle_model_path, dist_model_path, both_model_path, angles_test_data, dist_test_data, both_test_data):
     accuracies = []
-    test_data_angles = MlDataForModelTesting(
-        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_angles.csv')
-
-    test_data_dist = MlDataForModelTesting(
-        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_dist.csv')
-
-    test_data_both = MlDataForModelTesting(
-        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_both.csv')
-
-    accuracies.append(get_model_accuracy(angle_model_path, test_data_angles))
-    accuracies.append(get_model_accuracy(dist_model_path, test_data_dist))
-    accuracies.append(get_model_accuracy(both_model_path, test_data_both))
+    accuracies.append(get_model_accuracy(angle_model_path, angles_test_data))
+    accuracies.append(get_model_accuracy(dist_model_path, dist_test_data))
+    accuracies.append(get_model_accuracy(both_model_path, both_test_data))
     print(accuracies)
     return accuracies
 
