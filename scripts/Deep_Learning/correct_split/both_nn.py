@@ -38,6 +38,8 @@ model = Sequential()  # Documentation: https://keras.io/models/sequential/
 # the shape of our training data.
 model.add(Dense(units=256, activation='relu', input_shape=(feature_size,)))  # Dense = fully connected layers
 model.add(Dense(units=128, activation='relu'))  # Dense = fully connected layers
+model.add(Dense(units=64, activation='relu'))  # Dense = fully connected layers
+
 model.add(Dense(units=num_classes, activation='softmax'))
 model.compile(optimizer="adam", loss='kullback_leibler_divergence', metrics=['accuracy']) # default loss: categorical_crossentropy, can also be: kullback_leibler_divergence
 model.summary()
@@ -45,7 +47,7 @@ model.summary()
 # Train the model and keep track of progress
 history = model.fit(train_data.train_data, y_train,
                     batch_size=16,
-                    epochs=200,
+                    epochs=150,
                     verbose=1,
                     validation_split=0,
                     )
@@ -56,7 +58,7 @@ loss, accuracy = model.evaluate(test_data.test_data, y_test, verbose=False)
 print('Final test loss:', loss)
 print('Final test accuracy:', accuracy)
 
-model.save('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/neural_networks/correct_split_both.h5')
+model.save('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/neural_networks/correct_split_both_new.h5')
 
 
 #plt.plot(history.history['accuracy'])

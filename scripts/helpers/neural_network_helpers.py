@@ -7,5 +7,4 @@ def get_model_accuracy(file_path, mldata_for_testing):
     num_classes = 10
     y_test = keras.utils.to_categorical(mldata_for_testing.test_labels, num_classes)
     loss, accuracy = model.evaluate(mldata_for_testing.test_data, y_test, verbose=False)
-    print(accuracy)
     return accuracy
