@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
 
+from scripts.helpers.neural_network_helpers import get_model_accuracy
 from scripts.machineLearning.ml_data_for_classification import MlDataForModelTesting
 
 
@@ -47,3 +48,22 @@ def get_per_data_accuacy(angle_model, dist_model, both_model):
     accuracies.append(accuracy_score(test_data_both.test_labels, both_model.predict(test_data_both.test_data)))
     print(accuracies)
     return accuracies
+
+
+def get_nn_per_data_accuracy(angle_model_path, dist_model_path, both_model_path):
+    accuracies = []
+    test_data_angles = MlDataForModelTesting(
+        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_angles.csv')
+
+    test_data_dist = MlDataForModelTesting(
+        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_dist.csv')
+
+    test_data_both = MlDataForModelTesting(
+        '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_both.csv')
+
+    accuracies.append(get_model_accuracy(angle_model_path, test_data_angles))
+    accuracies.append(get_model_accuracy(dist_model_path, test_data_dist))
+    accuracies.append(get_model_accuracy(both_model_path, test_data_both))
+    print(accuracies)
+    return accuracies
+

@@ -56,6 +56,8 @@ loss, accuracy = model.evaluate(test_data.test_data, y_test, verbose=False)
 print('Final test loss:', loss)
 print('Final test accuracy:', accuracy)
 
+model.save('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/neural_networks/correct_split_dist.h5')
+
 
 #plt.plot(history.history['accuracy'])
 #plt.plot(history.history['val_accuracy'])

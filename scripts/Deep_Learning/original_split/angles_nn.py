@@ -7,8 +7,8 @@ from tensorflow.python.keras.models import Sequential
 from scripts.machineLearning.ml_data_for_classification import MlDataForModelTraining, MlDataForModelTesting
 
 
-train_data = MlDataForModelTraining('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/train_data_angles_with_flipped.csv')
-test_data = MlDataForModelTesting('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_angles.csv')
+train_data = MlDataForModelTraining('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/before_correct_split/csv_data_files/train_data_angles_with_flipped.csv')
+test_data = MlDataForModelTesting('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/before_correct_split/csv_data_files/test_data_angles.csv')
 
 # Inspect data
 print("Training data   shape: ", train_data.train_data.shape)
@@ -44,7 +44,7 @@ model.summary()
 
 # Train the model and keep track of progress
 history = model.fit(train_data.train_data, y_train,
-                    batch_size=16,
+                    batch_size=32,
                     epochs=200,
                     verbose=1,
                     validation_split=0,
@@ -56,7 +56,7 @@ loss, accuracy = model.evaluate(test_data.test_data, y_test, verbose=False)
 print('Final test loss:', loss)
 print('Final test accuracy:', accuracy)
 
-model.save('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/neural_networks/correct_split_angles.h5')
+model.save('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/neural_networks/og_split_angles.h5')
 
 
 #plt.plot(history.history['accuracy'])
