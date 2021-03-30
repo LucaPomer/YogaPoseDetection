@@ -56,7 +56,7 @@ loss, accuracy = model.evaluate(test_data.test_data, y_test, verbose=False)
 print('Final test loss:', loss)
 print('Final test accuracy:', accuracy)
 
-model.save('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/neural_networks/og_split_both_new.h5')
+model.save('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/neural_networks/og_split_both_test.h5')
 
 
 

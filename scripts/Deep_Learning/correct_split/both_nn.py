@@ -47,7 +47,7 @@ model.summary()
 # Train the model and keep track of progress
 history = model.fit(train_data.train_data, y_train,
                     batch_size=32,
-                    epochs=200,
+                    epochs=150,
                     verbose=1,
                     validation_split=0,
                     )
@@ -58,7 +58,8 @@ loss, accuracy = model.evaluate(test_data.test_data, y_test, verbose=False)
 print('Final test loss:', loss)
 print('Final test accuracy:', accuracy)
 
-model.save('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/neural_networks/correct_split_both.h5')
+model.save('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/neural_networks/correct_split_both_test.h5')
+
 
 
 #plt.plot(history.history['accuracy'])

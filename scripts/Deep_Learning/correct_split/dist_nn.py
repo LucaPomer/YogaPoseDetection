@@ -7,8 +7,8 @@ from tensorflow.python.keras.models import Sequential
 from scripts.machineLearning.ml_data_for_classification import MlDataForModelTraining, MlDataForModelTesting
 
 
-train_data = MlDataForModelTraining('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/train_data_dist_with_flipped.csv')
-test_data = MlDataForModelTesting('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/test_data_dist.csv')
+train_data = MlDataForModelTraining('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/correct_split_run_through/csv_data_files/train_data_dist_with_flipped.csv')
+test_data = MlDataForModelTesting('/Users/lucapomer/Documents/bachelor/YogaPoseDetection/correct_split_run_through/csv_data_files/test_data_dist.csv')
 
 # Inspect data
 print("Training data   shape: ", train_data.train_data.shape)
