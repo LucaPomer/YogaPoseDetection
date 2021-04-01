@@ -9,6 +9,7 @@ def split_images(classes_folder, split_ration, train_folder, test_folder):
         number_files = len(list)
         num_test = int(number_files * split_ration)
         num_int_test =0
+        print(class_folder)
         print (number_files)
         print(number_files * split_ration)
         os.mkdir(test_folder + "/" + class_folder)

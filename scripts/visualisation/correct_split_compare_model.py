@@ -5,7 +5,7 @@ import numpy as np
 from scripts.helpers.charts_helperse import get_per_data_accuacy, get_nn_per_data_accuracy
 from scripts.machineLearning.ml_data_for_classification import MlDataForModelTesting
 
-models_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/all_with_both_parameters'
+models_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/correct_split_regular_models'
 
 nn_model_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/neural_networks'
 
@@ -74,7 +74,7 @@ nn_rects = ax.bar(x + (width*2), rounded_nn, width, label='Neural_Network')
 
 # Add some text for labels, title and custom x-axis tick labels, etc.
 ax.set_ylabel('Accuracy')
-ax.set_title('Accuracy by Model and Data - 75/25 Split')
+ax.set_title('Accuracy by Model and Data - 25/75 Split')
 ax.set_xticks(x)
 ax.set_xticklabels(labels)
 plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
