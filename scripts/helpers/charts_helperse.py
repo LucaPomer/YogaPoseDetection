@@ -74,13 +74,3 @@ def get_nn_per_class_accuracy(model_path, test_data):
     print(accuracies)
     return accuracies
 
-
-def get_num_images_per_class(images_folder):
-    class_image_count_array = []
-    for class_folder in os.listdir(images_folder):
-        full_class_folder = images_folder + "/" + class_folder
-        list = os.listdir(full_class_folder)  # dir is your directory path
-        number_files = len(list)
-        class_image_count_array.append({class_folder:number_files})
-    print(class_image_count_array)
-    return class_image_count_array
