@@ -46,9 +46,3 @@ def per_class_accuracy(classifier_file, test_data):
     return disp.diagonal()
 
 
-def get_class_percisions_array(accuracy_matrix):
-    accuracy = []
-    for k, v in accuracy_matrix.items():
-        if pose_to_class_num.__contains__(k):
-            accuracy.append(round(v.get('precision'), 2))
-    return accuracy

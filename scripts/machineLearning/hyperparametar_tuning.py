@@ -4,11 +4,12 @@ from sklearn.gaussian_process.kernels import Matern, RBF, DotProduct, RationalQu
 from sklearn.neural_network import MLPClassifier
 from sklearn.tree import DecisionTreeClassifier
 
+from scripts.helpers.data_manipulation_helpers import write_multiple_lines
 from scripts.helpers.sklearn_helpers import best_hyperparameters
 from scripts.machineLearning.ml_data_for_classification import MlDataForModelTraining
 
 all_train_data = MlDataForModelTraining(
-    '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/experiments/own_split_test/csv_data_files/train_data_both_with_flipped.csv')
+    '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/old_split_run_through/csv_data_files/train_data_both_with_flipped.csv')
 
 parameters_gaus = {'kernel': [1*RBF(), 1*DotProduct(), 1*Matern(length_scale=1, nu=1.5),  1*RationalQuadratic(), 1*WhiteKernel()]}
 parameters_tree = {'max_depth': [5, 6, 7, 8 , 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 30]}
@@ -31,3 +32,11 @@ optimal_mlp = best_hyperparameters(parameter_mlp, mlp, all_train_data)
 optimal_tree = best_hyperparameters(parameters_tree, tree, all_train_data)
 optimal_svc = best_hyperparameters(parameters_svc, svc, all_train_data)
 
+save_info = []
+save_info.append(['data', 'old split both'])
+save_info.append(['optimal gauss', str(optimal_gauss)])
+save_info.append(['optimal mlp', str(optimal_mlp)])
+save_info.append(['optimal tree', str(optimal_tree)])
+save_info.append(['optimal svc', str(optimal_svc)])
+
+write_multiple_lines(save_info, '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/csv_data_files/hyperparameter_tuning.csv')
