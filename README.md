@@ -11,4 +11,7 @@ The entire project is written in python
 * Matplotlib
 ### References
 The projects uses the [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) as part of the methodology.
+### Citation
+Please cite my thesis in your publications if my project helps your research:
+Pomer, L. (2021). A Computer Vision Approach to Recognising Yoga Poses in Still Photographs (Undergraduate). Beuth university of applied sciences.
 
