@@ -3,7 +3,7 @@ from scripts.helpers.data_creation_helpers import distance_calc_and_write_data, 
     angle_and_dist_calc_and_write_data, angle_calc_and_write_data
 from scripts.helpers.data_manipulation_helpers import write_data
 from scripts.Openpose.openpose_algorithm import run_openpose_algorithm
-from scripts.preprocess_image_folders import split_and_sort_file, get_file_class_num
+from scripts.preprocess_image_folders import split_and_sort_folder, get_file_class_num
 
 
 def create_classification_data(images_folder, angles_result_file_path, dist_result_file_path,
@@ -12,7 +12,7 @@ def create_classification_data(images_folder, angles_result_file_path, dist_resu
     for class_folder in os.listdir(images_folder):
         full_class_path = images_folder + '/' + class_folder
         try:
-            split_and_sort_file(full_class_path, batch_size)
+            split_and_sort_folder(full_class_path, batch_size)
         except:
             print("no split needed")
 

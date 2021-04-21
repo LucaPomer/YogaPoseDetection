@@ -1,0 +1,37 @@
+data,correct split angles
+optimal gauss,"GaussianProcessClassifier(kernel=1**2 * RationalQuadratic(alpha=1, length_scale=1))"
+optimal mlp,"MLPClassifier(activation='logistic', hidden_layer_sizes=100, max_iter=5000)"
+optimal tree,DecisionTreeClassifier(max_depth=18)
+optimal svc,"SVC(C=0.5, kernel='poly')"
+
+data,correct split dist
+optimal gauss,"GaussianProcessClassifier(kernel=1**2 * Matern(length_scale=1, nu=1.5))"
+optimal mlp,"MLPClassifier(hidden_layer_sizes=100, learning_rate='adaptive', max_iter=5000)"
+optimal tree,DecisionTreeClassifier(max_depth=12)
+optimal svc,"SVC(C=1, kernel='poly')"
+
+data,correct split both
+optimal gauss,"GaussianProcessClassifier(kernel=1**2 * Matern(length_scale=1, nu=1.5))"
+optimal mlp,"MLPClassifier(activation='logistic', hidden_layer_sizes=100,
+              learning_rate='adaptive', max_iter=5000)"
+optimal tree,DecisionTreeClassifier(max_depth=12)
+optimal svc,"SVC(C=1, kernel='linear')"
+
+data,old split angles
+optimal gauss,"GaussianProcessClassifier(kernel=1**2 * RationalQuadratic(alpha=1, length_scale=1))"
+optimal mlp,"MLPClassifier(activation='logistic', alpha=0.05, hidden_layer_sizes=100,
+              learning_rate='adaptive', max_iter=10000)"
+optimal tree,DecisionTreeClassifier(max_depth=9)
+optimal svc,"SVC(C=1, kernel='poly')"
+
+data,old split dist
+optimal gauss,"GaussianProcessClassifier(kernel=1**2 * RationalQuadratic(alpha=1, length_scale=1))"
+optimal mlp,"MLPClassifier(hidden_layer_sizes=100, max_iter=10000)"
+optimal tree,DecisionTreeClassifier(max_depth=18)
+optimal svc,"SVC(C=1, kernel='poly')"
+
+data,old split both
+optimal gauss,"GaussianProcessClassifier(kernel=1**2 * RationalQuadratic(alpha=1, length_scale=1))"
+optimal mlp,"MLPClassifier(activation='logistic', hidden_layer_sizes=100, max_iter=10000)"
+optimal tree,DecisionTreeClassifier(max_depth=12)
+optimal svc,"SVC(C=1, kernel='linear')"

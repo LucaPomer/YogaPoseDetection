@@ -5,7 +5,7 @@ import numpy as np
 from scripts.helpers.charts_helperse import get_per_data_accuacy, get_nn_per_data_accuracy
 from scripts.machineLearning.ml_data_for_classification import MlDataForModelTesting
 
-models_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/old_split_run_through/models'
+models_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/original_split_regular_models'
 
 nn_model_folder = '/Users/lucapomer/Documents/bachelor/YogaPoseDetection/models/neural_networks'
 
